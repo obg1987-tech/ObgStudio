@@ -25,7 +25,7 @@ export async function POST(req) {
         let orchestrationData = {};
 
         try {
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
             const result = await model.generateContent(systemPrompt);
             const aiResponseText = result.response.text().replace(/```json/gi, '').replace(/```/g, '').trim();
             orchestrationData = JSON.parse(aiResponseText);
@@ -42,7 +42,7 @@ export async function POST(req) {
         }
 
         // 2. MusicGen (Hugging Face) API 호출
-        const hfResponse = await fetch("https://api-inference.huggingface.co/models/facebook/musicgen-small", {
+        const hfResponse = await fetch("https://router.huggingface.co/hf-inference/models/facebook/musicgen-small", {
             headers: {
                 "Authorization": `Bearer ${process.env.HF_API_KEY}`,
                 "Content-Type": "application/json"
@@ -53,6 +53,18 @@ export async function POST(req) {
 
         if (!hfResponse.ok) {
             const errorText = await hfResponse.text();
+            try {
+                const errorJson = JSON.parse(errorText);
+                if (errorJson.error && errorJson.error.includes("currently loading") && errorJson.estimated_time) {
+                    return new Response(JSON.stringify({
+                        status: 'loading',
+                        estimated_time: errorJson.estimated_time,
+                        message: "🎵 AI 작곡 엔진 부팅 중..."
+                    }), { status: 503, headers: { 'Content-Type': 'application/json' } });
+                }
+            } catch (e) {
+                // Not JSON or other error
+            }
             throw new Error(`Hugging Face API Error: ${errorText}`);
         }
 

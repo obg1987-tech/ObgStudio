@@ -379,20 +379,34 @@ export default function Home() {
             setLipScale(0);
             setHeadAngle(0);
 
-            const res = await fetch('/api/orchestrate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: userPrompt, genre: currentGenre })
-            });
+            let isPolling = true;
+            while (isPolling) {
+                const res = await fetch('/api/orchestrate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userPrompt, genre: currentGenre })
+                });
 
-            if (!res.ok) throw new Error("Orchestration API Failed");
+                if (res.status === 503) {
+                    const errorData = await res.json();
+                    if (errorData.status === 'loading') {
+                        setLyrics(`⏳ AI 작곡 엔진 부팅 중... (${Math.ceil(errorData.estimated_time || 30)}초 예상)`);
+                        // 기다렸다가 다시 폴링
+                        await new Promise(r => setTimeout(r, 5000));
+                        continue;
+                    }
+                }
 
-            const data = await res.json();
+                if (!res.ok) throw new Error("Orchestration API Failed");
 
-            setDynamicColor(data.color_code);
-            setDynamicBpm(data.bpm);
-            setLyrics(`[${data.target_theme} | ${data.bpm}BPM]\n${data.refined_prompt}`);
-            setAudioUrl(data.audio_url);
+                const data = await res.json();
+
+                setDynamicColor(data.color_code);
+                setDynamicBpm(data.bpm);
+                setLyrics(`[${data.target_theme} | ${data.bpm}BPM]\n${data.refined_prompt}`);
+                setAudioUrl(data.audio_url);
+                isPolling = false;
+            }
 
         } catch (error) {
             console.error("Music Generation Error:", error);
