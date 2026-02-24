@@ -51,6 +51,7 @@ const themeMap = {
   Lullaby: "lullaby",
   Jazz: "jazz",
 };
+const VALID_THEMES = new Set(Object.keys(themeMap));
 
 const hashString = (s) => {
   let h = 2166136261 >>> 0;
@@ -101,7 +102,7 @@ export async function POST(req) {
 
     const isRandom = !prompt || prompt.trim() === "";
     const userRequest = isRandom ? "Generate random music" : prompt;
-    const effectiveGenre = genre || "Jazz";
+    const effectiveGenre = VALID_THEMES.has(genre) ? genre : "Jazz";
 
     const systemPrompt = `You are an expert music prompt orchestrator. Build a detailed and production-ready prompt for text-to-music demos. Return JSON only.\n\n{\n  \"original_input\": \"${userRequest}\",\n  \"refined_prompt\": \"[Genre, Mood, Instrumentation, BPM, Mixing style] english string\",\n  \"target_theme\": \"${effectiveGenre}\",\n  \"color_code\": \"[Hex Code matching the mood]\",\n  \"bpm\": [number]\n}`;
 
@@ -118,14 +119,17 @@ export async function POST(req) {
       bpm: 120,
     });
 
+    // Always lock generation to the user-selected theme.
+    // Gemini may return a different target_theme; we intentionally ignore it.
     const selectedTrack = pickTrack({
       prompt: orchestrationData.refined_prompt || userRequest,
-      theme: orchestrationData.target_theme || effectiveGenre,
+      theme: effectiveGenre,
     });
 
     return new Response(
       JSON.stringify({
         ...orchestrationData,
+        target_theme: effectiveGenre,
         bpm: selectedTrack.bpm || orchestrationData.bpm,
         audio_url: selectedTrack.file,
         provider: "preset_pool",

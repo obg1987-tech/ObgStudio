@@ -5,7 +5,7 @@ import { AudioAnalyzer } from '@/lib/MusicEngine';
 import RobotScene from '@/components/RobotScene';
 import PromptInput from '@/components/PromptInput';
 
-const Starfield = ({ tempo, selectedGenre }) => {
+const Starfield = ({ selectedGenre }) => {
     const canvasRef = useRef(null);
     const rafRef = useRef(null);
 
@@ -68,7 +68,7 @@ const Starfield = ({ tempo, selectedGenre }) => {
             f.starIndex = idx;
             f.x = stars[idx].x;
             f.y = stars[idx].y;
-            const angle = (Math.random() * 0.9 + 0.25) * Math.PI; // ~45째~200째
+            const angle = (Math.random() * 0.9 + 0.25) * Math.PI; // ~45deg-200deg
             const speed = 260 + Math.random() * 260;
             f.vx = Math.cos(angle) * speed;
             f.vy = Math.sin(angle) * speed;
@@ -95,7 +95,7 @@ const Starfield = ({ tempo, selectedGenre }) => {
         const draw = (now) => {
             const dt = Math.min((now - last) / 1000, 0.05);
             last = now;
-            const tempoMul = 1 + Math.min(Math.max(tempo, 0), 0.8) * 1.6;
+            const tempoMul = 1;
 
             const themeColors = {
                 'Rock': { r: 60, g: 5, b: 5 },
@@ -220,7 +220,7 @@ const Starfield = ({ tempo, selectedGenre }) => {
             window.removeEventListener('resize', resize);
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
         };
-    }, [tempo, selectedGenre]);
+    }, [selectedGenre]);
 
     return (
         <canvas
@@ -305,14 +305,13 @@ const DynamicLogo = ({ genre }) => {
     if (genre === 'Jazz') {
         return (
             <div className={`${frameClass} cursor-pointer relative transition-all duration-1000`}>
-                <div className="theme-jazz-ornament"></div>
-                <svg className="w-10 h-10 md:w-14 md:h-14 2xl:w-20 2xl:h-20 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] justify-self-center" style={{ color: '#d4af37' }} fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-10 h-10 md:w-14 md:h-14 2xl:w-20 2xl:h-20 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] justify-self-center translate-x-[12px] md:translate-x-[16px] 2xl:translate-x-[24px]" style={{ color: '#d4af37' }} fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
                 </svg>
                 <span className="text-5xl md:text-6xl 2xl:text-[8rem] font-serif tracking-[0.05em] theme-jazz-shimmer-text">
                     ObgStudio
                 </span>
-                <svg className="w-6 h-6 md:w-8 md:h-8 2xl:w-14 2xl:h-14 text-white drop-shadow-[0_0_10px_white] -translate-y-4 md:-translate-y-6 2xl:-translate-y-12 opacity-80 justify-self-center" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 md:w-8 md:h-8 2xl:w-14 2xl:h-14 text-white drop-shadow-[0_0_10px_white] -translate-y-4 md:-translate-y-6 2xl:-translate-y-12 opacity-80 justify-self-center -translate-x-[12px] md:-translate-x-[16px] 2xl:-translate-x-[24px]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2l2.4 7.6H22l-6.2 4.5 2.4 7.6-6.2-4.5-6.2 4.5 2.4-7.6L2 9.6h7.6L12 2z" />
                 </svg>
             </div>
@@ -336,6 +335,7 @@ const DynamicLogo = ({ genre }) => {
 };
 export default function Home() {
     const [currentGenre, setCurrentGenre] = useState('');
+    const [displayGenre, setDisplayGenre] = useState('');
     const [robotState, setRobotState] = useState('idle');
     const [lyrics, setLyrics] = useState('');
     const [audioUrl, setAudioUrl] = useState(null);
@@ -352,11 +352,29 @@ export default function Home() {
     const audioRef = useRef(null);
     const analyzerRef = useRef(null);
     const speechRef = useRef(null);
+    const selectedGenreRef = useRef('');
+    const isThemeLockedByTrack = Boolean(audioUrl);
 
-    const handleGenerate = async (userPrompt) => {
+    const handleSelectGenre = (nextGenre) => {
+        selectedGenreRef.current = nextGenre;
+        setCurrentGenre(nextGenre);
+        if (!isThemeLockedByTrack) {
+            setDisplayGenre(nextGenre);
+        }
+    };
+
+    useEffect(() => {
+        if (!isThemeLockedByTrack) {
+            setDisplayGenre(currentGenre);
+        }
+    }, [currentGenre, isThemeLockedByTrack]);
+
+    const handleGenerate = async (userPrompt, requestedGenre) => {
         try {
+            const effectiveGenre = requestedGenre || selectedGenreRef.current || currentGenre || "Jazz";
+            selectedGenreRef.current = effectiveGenre;
             setRobotState('thinking');
-            setLyrics('?쨼 LLM Prompt Orchestrating...');
+            setLyrics('LLM Prompt Orchestrating...');
             setAudioUrl(null);
             setDynamicColor(null);
             setLipScale(0);
@@ -365,21 +383,22 @@ export default function Home() {
             setIsAudioPlaying(false);
             setVoiceText('');
             setIsMockAudio(false);
+            setDisplayGenre(effectiveGenre);
 
             let isPolling = true;
             while (isPolling) {
                 const res = await fetch('/api/orchestrate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: userPrompt, genre: currentGenre })
+                    body: JSON.stringify({ prompt: userPrompt, genre: effectiveGenre })
                 });
 
                 if (res.status === 503) {
                     const errorData = await res.json();
                     if (errorData.status === 'loading') {
-                        setLyrics(`??AI ?묎끝 ?붿쭊 遺??以?.. (${Math.ceil(errorData.estimated_time || 30)}珥??덉긽)`);
-                        // 湲곕떎?몃떎媛 ?ㅼ떆 ?대쭅
-                        await new Promise(r => setTimeout(r, 5000));
+                        setLyrics(`AI 작곡 엔진 준비 중... (${Math.ceil(errorData.estimated_time || 30)}초 예상)`);
+                        // Wait and poll again.
+                        await new Promise((r) => setTimeout(r, 5000));
                         continue;
                     }
                 }
@@ -392,11 +411,12 @@ export default function Home() {
                 setDynamicBpm(data.bpm);
                 const sourceTag = data.provider ? ` | ${data.provider}` : '';
                 setLyrics(`[${data.target_theme} | ${data.bpm}BPM${sourceTag}]\n${data.refined_prompt}`);
+                setDisplayGenre(effectiveGenre);
                 setAudioUrl(data.audio_url);
                 setVoiceText(data.voice_text || '');
                 setIsMockAudio(Boolean(data.is_mock_audio));
                 if (data.warning) {
-                    setLyrics((prev) => `${prev}\n\n??${data.warning}`);
+                    setLyrics((prev) => `${prev}\n\n[주의] ${data.warning}`);
                 }
                 isPolling = false;
             }
@@ -454,7 +474,7 @@ export default function Home() {
         };
     }, [audioUrl, isMockAudio, voiceText]);
 
-    const tempo = audioUrl ? headAngle : 0;
+    // Keep background behavior fixed regardless of music playback.
     const handlePlay = async () => {
         if (!audioRef.current) return;
         try {
@@ -509,22 +529,22 @@ export default function Home() {
 
     return (
         <main className="h-[100dvh] min-h-[100dvh] bg-black text-white relative overflow-hidden font-sans pb-[env(safe-area-inset-bottom)]">
-            <Starfield tempo={tempo} selectedGenre={currentGenre} />
+            <Starfield selectedGenre={displayGenre} />
 
-            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(56px,10vh)_minmax(220px,46vh)_minmax(180px,44vh)] md:grid-rows-[minmax(68px,11vh)_minmax(320px,1fr)_minmax(132px,21vh)] 2xl:grid-rows-[minmax(98px,12vh)_minmax(400px,1fr)_minmax(168px,20vh)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13vh)_minmax(500px,1fr)_minmax(185px,19vh)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14vh)_minmax(590px,1fr)_minmax(215px,18vh)]">
+            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(56px,10vh)_minmax(240px,49vh)_minmax(160px,41vh)] md:grid-rows-[minmax(68px,11vh)_minmax(320px,1fr)_minmax(132px,21vh)] 2xl:grid-rows-[minmax(98px,12vh)_minmax(400px,1fr)_minmax(168px,20vh)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13vh)_minmax(500px,1fr)_minmax(185px,19vh)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14vh)_minmax(590px,1fr)_minmax(215px,18vh)]">
                 <header className="w-full px-3 md:px-10 flex justify-center items-center min-h-0 relative z-30 overflow-visible pb-[0.4vh] md:pb-[0.8vh]">
                     <div className="origin-center translate-y-[0.2vh] md:translate-y-[0.9vh] 2xl:translate-y-[1.1vh] [@media(min-width:1920px)]:translate-y-[1.3vh] [@media(min-width:2560px)]:translate-y-[1.5vh] scale-[0.46] sm:scale-[0.58] md:scale-[0.86] xl:scale-95 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
-                        <DynamicLogo genre={currentGenre} />
+                        <DynamicLogo genre={displayGenre} />
                     </div>
                 </header>
 
                 <div className="w-full min-h-0 flex items-center justify-center px-2 md:px-6 [@media(min-width:1920px)]:px-8 [@media(min-width:2560px)]:px-10 relative z-20 md:-translate-y-[1.4vh] [@media(min-width:1920px)]:-translate-y-[1.8vh] [@media(min-width:2560px)]:-translate-y-[2.2vh]">
-                    <div className="w-full max-w-[92vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[220px] md:min-h-[320px] relative scale-[0.86] sm:scale-[0.92] md:scale-100">
+                    <div className="w-full max-w-[96vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[220px] md:min-h-[320px] relative scale-[0.95] sm:scale-[0.98] md:scale-100">
                         <RobotScene
                             lipScale={lipScale}
                             headAngle={headAngle}
                             robotState={robotState}
-                            selectedGenre={currentGenre}
+                            selectedGenre={displayGenre}
                             dynamicColor={dynamicColor}
                             dynamicBpm={dynamicBpm}
                         />
@@ -547,7 +567,7 @@ export default function Home() {
                             onGenerate={handleGenerate}
                             disabled={robotState === 'thinking'}
                             selectedGenre={currentGenre}
-                            onSelectGenre={setCurrentGenre}
+                            onSelectGenre={handleSelectGenre}
                         />
                         <div className={`mt-2 md:mt-3 flex justify-end min-h-[52px] md:min-h-[58px] ${audioUrl ? '' : 'opacity-0 pointer-events-none'}`}>
                             {audioUrl && (
@@ -604,14 +624,9 @@ export default function Home() {
                     />
                 )
             }
-
-            {/* 4. ?곗륫 ?섎떒 怨좎젙 濡쒓퀬 ?대룞??*/}
-
-            {/* ?쇱そ ?섎떒 ??옄蹂??μ떇 */}
             <svg className="fixed bottom-24 right-[25%] w-8 h-8 text-white/50 drop-shadow-lg z-0 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z" />
             </svg>
-            {/* ?곗륫 ?섎떒 ??옄蹂??μ떇 */}
             <svg className="fixed bottom-12 right-[5%] w-12 h-12 text-white/40 drop-shadow-lg z-0 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" />
             </svg>
@@ -619,4 +634,6 @@ export default function Home() {
         </main >
     );
 }
+
+
 

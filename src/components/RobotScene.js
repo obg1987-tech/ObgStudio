@@ -5,9 +5,6 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Environment, Float, ContactShadows, RoundedBox, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
-const matteBlack = new THREE.Color('#0b0b0f');
-const aluminum = new THREE.Color('#d6dde6');
-
 const Headphones = ({ headY, earX, earR, bandR, theme }) => {
     const earMat = (
         <meshPhysicalMaterial
@@ -103,46 +100,6 @@ const Headphones = ({ headY, earX, earR, bandR, theme }) => {
     );
 };
 
-const NeonStrips = ({ size, theme }) => {
-    const stripMat = (
-        <meshStandardMaterial
-            color={theme.strip}
-            emissive={theme.strip}
-            emissiveIntensity={2.2}
-            toneMapped={false}
-        />
-    );
-
-    const armY = size.y * 0.05;
-    const legY = -size.y * 0.3;
-    const sideX = size.x * 0.42;
-    const z = size.z * 0.35;
-    const armLen = size.y * 0.22;
-    const legLen = size.y * 0.24;
-    const thickness = size.x * 0.06;
-
-    return (
-        <group>
-            <mesh position={[-sideX, armY, z]} rotation={[0, 0, 0.3]}>
-                <boxGeometry args={[thickness, armLen, thickness * 0.7]} />
-                {stripMat}
-            </mesh>
-            <mesh position={[sideX, armY, z]} rotation={[0, 0, -0.3]}>
-                <boxGeometry args={[thickness, armLen, thickness * 0.7]} />
-                {stripMat}
-            </mesh>
-            <mesh position={[-sideX * 0.45, legY, z]}>
-                <boxGeometry args={[thickness, legLen, thickness * 0.7]} />
-                {stripMat}
-            </mesh>
-            <mesh position={[sideX * 0.45, legY, z]}>
-                <boxGeometry args={[thickness, legLen, thickness * 0.7]} />
-                {stripMat}
-            </mesh>
-        </group>
-    );
-};
-
 const FaceEqualizer = ({ lipScale, barsRef, headY, faceZ, size, theme }) => {
     const barMat = (color) => (
         <meshStandardMaterial
@@ -159,6 +116,12 @@ const FaceEqualizer = ({ lipScale, barsRef, headY, faceZ, size, theme }) => {
     const screenD = Math.max(size.z * 0.06, 0.04);
     const barW = screenW * 0.05;
     const barH = screenH * 0.55;
+    const mixLedColor = (ratio) => {
+        if (ratio <= 0.5) {
+            return theme.ledLeft.clone().lerp(theme.ledMid, ratio * 2);
+        }
+        return theme.ledMid.clone().lerp(theme.ledRight, (ratio - 0.5) * 2);
+    };
 
     return (
         <group position={[0, headY, faceZ]}>
@@ -195,7 +158,7 @@ const FaceEqualizer = ({ lipScale, barsRef, headY, faceZ, size, theme }) => {
                         <boxGeometry args={[barW, barH, screenD * 0.6]} />
                         {React.cloneElement(
                             barMat(
-                                theme.base.clone().lerp(theme.accent, i / Math.max(bars.length - 1, 1))
+                                mixLedColor(i / Math.max(bars.length - 1, 1))
                             ),
                             { depthTest: false, depthWrite: false }
                         )}
@@ -206,7 +169,7 @@ const FaceEqualizer = ({ lipScale, barsRef, headY, faceZ, size, theme }) => {
     );
 };
 
-const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicColor, dynamicBpm = 120 }) => {
+const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicColor, dynamicBpm = 120, useTilt = false, tiltX = 0, tiltY = 0 }) => {
     const group = useRef();
     const barsRef = useRef([]);
     const frameRef = useRef(0);
@@ -340,9 +303,11 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicCol
     useFrame((state) => {
         if (!group.current) return;
 
+        const lookX = useTilt ? tiltX : state.pointer.x;
+        const lookY = useTilt ? tiltY : state.pointer.y;
         const target = new THREE.Vector3(
-            (state.pointer.x * state.viewport.width) / 2.0,
-            (state.pointer.y * state.viewport.height) / 2.0 + 1.2,
+            (lookX * state.viewport.width) / 2.0,
+            (lookY * state.viewport.height) / 2.0 + 1.2,
             6
         );
 
@@ -389,11 +354,12 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicCol
                 ctx.shadowBlur = 12;
                 ctx.shadowOffsetY = 3;
 
-                const hue = (t * 60 + energy * 40) % 360;
-                const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                gradient.addColorStop(0, `hsl(${hue}, 100%, 65%)`);
-                gradient.addColorStop(0.5, `hsl(${(hue + 40) % 360}, 100%, 70%)`);
-                gradient.addColorStop(1, `hsl(${(hue + 90) % 360}, 100%, 60%)`);
+                const drift = (Math.sin(t * 1.1) * 0.5 + 0.5) * canvas.width * 0.24;
+                const gradient = ctx.createLinearGradient(-drift, 0, canvas.width + drift, 0);
+                gradient.addColorStop(0, theme.logoLeft.getStyle());
+                gradient.addColorStop(0.34, theme.logoMid.getStyle());
+                gradient.addColorStop(0.68, theme.logoRight.getStyle());
+                gradient.addColorStop(1, theme.logoMid.getStyle());
 
                 ctx.save();
                 ctx.translate(canvas.width / 2, canvas.height / 2 + 8);
@@ -418,25 +384,86 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicCol
         }
     });
     const genreColors = {
-        'Rock': { base: '#ff4500', accent: '#ffced9', strip: '#e63900' },
-        'Hip-hop': { base: '#b967ff', accent: '#eabfff', strip: '#9a3ee8' },
-        'K-Pop': { base: '#ff71ce', accent: '#ffe3f8', strip: '#e94db0' },
-        'Lullaby': { base: '#3b82f6', accent: '#add3ff', strip: '#2563eb' },
-        'Jazz': { base: '#d4af37', accent: '#fef1d6', strip: '#b89222' }
+        'Rock': {
+            base: '#ff4500',
+            accent: '#ff8a5c',
+            strip: '#ff3300',
+            ledLeft: '#ff5a1f',
+            ledMid: '#ff6a00',
+            ledRight: '#ff3b30',
+            logoLeft: '#ff6d00',
+            logoMid: '#ff3b30',
+            logoRight: '#ff9f43',
+        },
+        'Hip-hop': {
+            base: '#b967ff',
+            accent: '#d394ff',
+            strip: '#9a3ee8',
+            ledLeft: '#8b5cf6',
+            ledMid: '#c026d3',
+            ledRight: '#ec4899',
+            logoLeft: '#a855f7',
+            logoMid: '#d946ef',
+            logoRight: '#7c3aed',
+        },
+        'K-Pop': {
+            base: '#ff71ce',
+            accent: '#ff9ee3',
+            strip: '#e94db0',
+            ledLeft: '#ff4fd8',
+            ledMid: '#8b5cf6',
+            ledRight: '#00d4ff',
+            logoLeft: '#ff5ecf',
+            logoMid: '#00c8ff',
+            logoRight: '#9a6bff',
+        },
+        'Lullaby': {
+            base: '#3b82f6',
+            accent: '#8fc9ff',
+            strip: '#2563eb',
+            ledLeft: '#67e8f9',
+            ledMid: '#22d3ee',
+            ledRight: '#7c83ff',
+            logoLeft: '#7dd3fc',
+            logoMid: '#60a5fa',
+            logoRight: '#818cf8',
+        },
+        'Jazz': {
+            base: '#d4af37',
+            accent: '#f0cf6b',
+            strip: '#b89222',
+            ledLeft: '#f59e0b',
+            ledMid: '#fbbf24',
+            ledRight: '#ffd166',
+            logoLeft: '#f59e0b',
+            logoMid: '#facc15',
+            logoRight: '#fb923c',
+        }
     };
 
     const activeColors = {
         ...(genreColors[selectedGenre] || {
             base: '#35f2ff',
-            accent: '#86ffd1',
-            strip: '#4aa3ff'
+            accent: '#7ef7ff',
+            strip: '#4aa3ff',
+            ledLeft: '#2ef9ff',
+            ledMid: '#52f7c7',
+            ledRight: '#4a7dff',
+            logoLeft: '#2ef9ff',
+            logoMid: '#52f7c7',
+            logoRight: '#4aa3ff',
         })
     };
 
-    if (dynamicColor && robotState === 'singing') {
+    // Keep theme identity stable while singing.
+    // Use dynamicColor only when no explicit theme is selected.
+    if (dynamicColor && robotState === 'singing' && !selectedGenre) {
         const hex = dynamicColor.startsWith('#') ? dynamicColor : '#' + dynamicColor;
         activeColors.base = hex;
         activeColors.strip = hex;
+        activeColors.ledLeft = hex;
+        activeColors.ledMid = hex;
+        activeColors.logoLeft = hex;
     }
 
     const baseColor = new THREE.Color(activeColors.base);
@@ -455,6 +482,12 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicCol
         base: baseColor,
         accent: accentColor,
         strip: stripColor,
+        ledLeft: new THREE.Color(activeColors.ledLeft),
+        ledMid: new THREE.Color(activeColors.ledMid),
+        ledRight: new THREE.Color(activeColors.ledRight),
+        logoLeft: new THREE.Color(activeColors.logoLeft),
+        logoMid: new THREE.Color(activeColors.logoMid),
+        logoRight: new THREE.Color(activeColors.logoRight),
     };
 
     return (
@@ -576,24 +609,33 @@ const RobotFallback = () => (
     </group>
 );
 
-const ClubLights = () => {
+const ClubLights = ({ selectedGenre, robotState }) => {
     const l1 = useRef();
     const l2 = useRef();
     const l3 = useRef();
+    const themeLightMap = {
+        Rock: ['#ff4d2e', '#ff6a3d', '#ff3b30'],
+        'Hip-hop': ['#7c5cff', '#b66dff', '#ff55cc'],
+        'K-Pop': ['#ff5ed3', '#9f67ff', '#00d4ff'],
+        Lullaby: ['#67e8f9', '#60a5fa', '#818cf8'],
+        Jazz: ['#f59e0b', '#facc15', '#fb923c'],
+    };
+    const colors = themeLightMap[selectedGenre] || ['#20f7ff', '#7bffd4', '#4aa3ff'];
 
     useFrame((state) => {
         const t = state.clock.getElapsedTime();
+        const beat = robotState === 'singing' ? 1 : 0.45;
         if (l1.current) {
-            l1.current.intensity = 1.2 + Math.abs(Math.sin(t * 3.6)) * 2.4;
-            l1.current.color.setHSL((t * 0.45) % 1, 1.0, 0.6);
+            l1.current.intensity = 0.9 + Math.abs(Math.sin(t * 2.4 * beat)) * 1.4;
+            l1.current.color.set(colors[0]);
         }
         if (l2.current) {
-            l2.current.intensity = 1.0 + Math.abs(Math.sin(t * 4.2 + 1.2)) * 2.0;
-            l2.current.color.setHSL((t * 0.55 + 0.33) % 1, 1.0, 0.6);
+            l2.current.intensity = 0.8 + Math.abs(Math.sin(t * 2.0 * beat + 1.2)) * 1.2;
+            l2.current.color.set(colors[1]);
         }
         if (l3.current) {
-            l3.current.intensity = 1.0 + Math.abs(Math.sin(t * 3.0 + 2.4)) * 2.0;
-            l3.current.color.setHSL((t * 0.4 + 0.66) % 1, 1.0, 0.6);
+            l3.current.intensity = 0.8 + Math.abs(Math.sin(t * 1.8 * beat + 2.4)) * 1.2;
+            l3.current.color.set(colors[2]);
         }
     });
 
@@ -608,6 +650,7 @@ const ClubLights = () => {
 
 export default function RobotScene({ lipScale, headAngle, robotState, selectedGenre, dynamicColor, dynamicBpm, className = '' }) {
     const [isMobile, setIsMobile] = useState(false);
+    const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         const update = () => setIsMobile(window.innerWidth < 768);
@@ -615,6 +658,57 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
         window.addEventListener('resize', update);
         return () => window.removeEventListener('resize', update);
     }, []);
+
+    useEffect(() => {
+        if (!isMobile || typeof window === 'undefined') return;
+
+        let active = true;
+        const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+        const onOrientation = (event) => {
+            if (!active) return;
+            const gamma = typeof event.gamma === 'number' ? event.gamma : 0; // left-right
+            const beta = typeof event.beta === 'number' ? event.beta : 0; // front-back
+
+            // Normalize to pointer-like range [-1, 1]
+            const x = clamp(gamma / 35, -1, 1);
+            const y = clamp((beta - 45) / 45, -1, 1);
+            setTilt((prev) => ({
+                x: prev.x + (x - prev.x) * 0.18,
+                y: prev.y + (y - prev.y) * 0.18,
+            }));
+        };
+
+        const enableListener = async () => {
+            try {
+                if (
+                    window.DeviceOrientationEvent &&
+                    typeof window.DeviceOrientationEvent.requestPermission === 'function'
+                ) {
+                    const res = await window.DeviceOrientationEvent.requestPermission();
+                    if (res !== 'granted') return;
+                }
+                window.addEventListener('deviceorientation', onOrientation);
+            } catch {
+                // Ignore permission errors and keep pointer fallback behavior.
+            }
+        };
+
+        // iOS requires a user gesture; other devices will just attach on first touch/click.
+        const onFirstGesture = () => {
+            enableListener();
+            window.removeEventListener('touchstart', onFirstGesture);
+            window.removeEventListener('click', onFirstGesture);
+        };
+        window.addEventListener('touchstart', onFirstGesture, { passive: true });
+        window.addEventListener('click', onFirstGesture);
+
+        return () => {
+            active = false;
+            window.removeEventListener('deviceorientation', onOrientation);
+            window.removeEventListener('touchstart', onFirstGesture);
+            window.removeEventListener('click', onFirstGesture);
+        };
+    }, [isMobile]);
 
     return (
         <div
@@ -629,9 +723,19 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
             >
                 <Environment preset="city" environmentIntensity={1.2} />
                 <LightingSetup />
-                <ClubLights />
+                <ClubLights selectedGenre={selectedGenre} robotState={robotState} />
                 <Suspense fallback={<RobotFallback />}>
-                    <RobotModel lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={selectedGenre} dynamicColor={dynamicColor} dynamicBpm={dynamicBpm} />
+                    <RobotModel
+                        lipScale={lipScale}
+                        headAngle={headAngle}
+                        robotState={robotState}
+                        selectedGenre={selectedGenre}
+                        dynamicColor={dynamicColor}
+                        dynamicBpm={dynamicBpm}
+                        useTilt={isMobile}
+                        tiltX={tilt.x}
+                        tiltY={tilt.y}
+                    />
                 </Suspense>
                 {!isMobile && (
                     <ContactShadows position={[0, -3.2, 0]} opacity={0.4} scale={10} blur={2.5} far={4} color="#000000" />
