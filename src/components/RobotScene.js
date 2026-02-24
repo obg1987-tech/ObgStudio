@@ -206,8 +206,8 @@ const FaceEqualizer = ({ lipScale, barsRef, headY, faceZ, size, theme }) => {
     );
 };
 
-const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre }) => {
-    const rootRef = useRef();
+const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicColor, dynamicBpm = 120 }) => {
+    const group = useRef();
     const barsRef = useRef([]);
     const frameRef = useRef(0);
 
@@ -338,7 +338,7 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre }) => {
     }, []);
 
     useFrame((state) => {
-        if (!rootRef.current) return;
+        if (!group.current) return;
 
         const target = new THREE.Vector3(
             (state.pointer.x * state.viewport.width) / 2.0,
@@ -347,20 +347,20 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre }) => {
         );
 
         const dummyAt = new THREE.Object3D();
-        dummyAt.position.copy(rootRef.current.position);
+        dummyAt.position.copy(group.current.position);
         dummyAt.lookAt(target);
-        rootRef.current.quaternion.slerp(dummyAt.quaternion, 0.1);
+        group.current.quaternion.slerp(dummyAt.quaternion, 0.1);
 
         const t = state.clock.getElapsedTime();
         const sway = Math.sin(t * 1.6) * 0.4;
-        rootRef.current.rotation.y = THREE.MathUtils.lerp(
-            rootRef.current.rotation.y,
+        group.current.rotation.y = THREE.MathUtils.lerp(
+            group.current.rotation.y,
             sway,
             0.08
         );
 
-        rootRef.current.rotation.x = THREE.MathUtils.lerp(
-            rootRef.current.rotation.x,
+        group.current.rotation.x = THREE.MathUtils.lerp(
+            group.current.rotation.x,
             headAngle * 0.28,
             0.18
         );
@@ -369,11 +369,13 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre }) => {
         if (frameRef.current % 2 === 0) {
             const energy = Math.min(Math.max(lipScale * 2.0, 0.05), 2.2);
             const amp = 0.18 + energy * 1.4;
+            // Sync waveform animation with LLM-provided BPM
+            const bps = Math.max(0.5, (dynamicBpm / 60) * 0.9);
             barsRef.current.forEach((bar, i) => {
                 if (!bar) return;
-                const wave = Math.sin(t * 6.6 + i * 0.55) * 0.5 + 0.5;
-                const beat = Math.sin(t * 1.8) * 0.16 + 0.84;
-                const h = 0.2 + wave * 0.26 + amp * beat;
+                const wave = Math.sin(t * 6.6 * bps + i * 0.55) * 0.5 + 0.5;
+                const beat = Math.sin(t * bps * Math.PI) * 0.16 + 0.84;
+                let h = robotState === 'singing' ? wave * 3.5 : 0.2 + wave * 0.26 + amp * beat;
                 bar.scale.y = THREE.MathUtils.lerp(bar.scale.y, h, 0.3);
             });
             if (logoTexture && logoCanvasRef.current && logoCtxRef.current) {
@@ -423,11 +425,19 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre }) => {
         'Jazz': { base: '#d4af37', accent: '#fef1d6', strip: '#b89222' }
     };
 
-    const activeColors = genreColors[selectedGenre] || {
-        base: '#35f2ff',
-        accent: '#86ffd1',
-        strip: '#4aa3ff'
+    const activeColors = {
+        ...(genreColors[selectedGenre] || {
+            base: '#35f2ff',
+            accent: '#86ffd1',
+            strip: '#4aa3ff'
+        })
     };
+
+    if (dynamicColor && robotState === 'singing') {
+        const hex = dynamicColor.startsWith('#') ? dynamicColor : '#' + dynamicColor;
+        activeColors.base = hex;
+        activeColors.strip = hex;
+    }
 
     const baseColor = new THREE.Color(activeColors.base);
     const accentColor = new THREE.Color(activeColors.accent);
@@ -449,7 +459,7 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre }) => {
 
     return (
         <Float speed={2.6} rotationIntensity={0.08} floatIntensity={0.6} floatingRange={[-0.08, 0.08]}>
-            <group ref={rootRef} position={[0, -0.6, 0]} scale={[scale * 1.04, scale, scale * 1.04]}>
+            <group ref={group} position={[0, -0.6, 0]} scale={[scale * 1.04, scale, scale * 1.04]}>
                 <primitive object={model} />
                 {/* Rounded silhouette shell */}
                 <group>
@@ -583,7 +593,7 @@ const ClubLights = () => {
     );
 };
 
-export default function RobotScene({ lipScale, headAngle, robotState, selectedGenre }) {
+export default function RobotScene({ lipScale, headAngle, robotState, selectedGenre, dynamicColor, dynamicBpm }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -607,7 +617,7 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
                 <Environment preset="city" environmentIntensity={1.2} />
                 <LightingSetup />
                 <ClubLights />
-                <RobotModel lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={selectedGenre} />
+                <RobotModel lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={selectedGenre} dynamicColor={dynamicColor} dynamicBpm={dynamicBpm} />
                 {!isMobile && (
                     <ContactShadows position={[0, -3.2, 0]} opacity={0.4} scale={10} blur={2.5} far={4} color="#000000" />
                 )}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { generateLyrics, generateMusic, AudioAnalyzer } from '@/lib/MusicEngine';
+import { AudioAnalyzer } from '@/lib/MusicEngine';
 import RobotScene from '@/components/RobotScene';
 import PromptInput from '@/components/PromptInput';
 
@@ -361,6 +361,8 @@ export default function Home() {
     const [robotState, setRobotState] = useState('idle');
     const [lyrics, setLyrics] = useState('');
     const [audioUrl, setAudioUrl] = useState(null);
+    const [dynamicColor, setDynamicColor] = useState(null);
+    const [dynamicBpm, setDynamicBpm] = useState(120);
 
     const [lipScale, setLipScale] = useState(0);
     const [headAngle, setHeadAngle] = useState(0);
@@ -371,21 +373,30 @@ export default function Home() {
     const handleGenerate = async (userPrompt) => {
         try {
             setRobotState('thinking');
-            setLyrics('');
+            setLyrics('🤖 LLM Prompt Orchestrating...');
             setAudioUrl(null);
+            setDynamicColor(null);
             setLipScale(0);
             setHeadAngle(0);
 
-            const combinedPrompt = `[${currentGenre}] ${userPrompt}`;
+            const res = await fetch('/api/orchestrate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: userPrompt, genre: currentGenre })
+            });
 
-            const newLyrics = await generateLyrics(combinedPrompt);
-            setLyrics(newLyrics);
+            if (!res.ok) throw new Error("Orchestration API Failed");
 
-            const generatedAudioUrl = await generateMusic(newLyrics, combinedPrompt);
-            setAudioUrl(generatedAudioUrl);
+            const data = await res.json();
+
+            setDynamicColor(data.color_code);
+            setDynamicBpm(data.bpm);
+            setLyrics(`[${data.target_theme} | ${data.bpm}BPM]\n${data.refined_prompt}`);
+            setAudioUrl(data.audio_url);
 
         } catch (error) {
             console.error("Music Generation Error:", error);
+            setLyrics('Error occurred during orchestration.');
             setRobotState('idle');
         }
     };
@@ -432,14 +443,21 @@ export default function Home() {
             <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center z-10 relative mt-[-1rem] md:mt-[-4rem]">
                 <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-5xl 2xl:max-w-7xl relative">
 
-                    <RobotScene lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={currentGenre} />
+                    <RobotScene
+                        lipScale={lipScale}
+                        headAngle={headAngle}
+                        robotState={robotState}
+                        selectedGenre={currentGenre}
+                        dynamicColor={dynamicColor}
+                        dynamicBpm={dynamicBpm}
+                    />
 
-                    {/* 가사 말풍선 */}
-                    {robotState === 'singing' && lyrics && (
-                        <div className="absolute -bottom-2 md:bottom-12 2xl:bottom-24 left-1/2 -translate-x-1/2 w-[90%] md:w-full px-4 text-center pointer-events-none z-20">
-                            <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-8 py-3 2xl:px-14 2xl:py-6 inline-block shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                                <p className="text-white text-lg 2xl:text-3xl font-medium tracking-wider drop-shadow-md whitespace-nowrap">
-                                    {lyrics.split('\n')[0]}
+                    {/* 제미니 결과값 및 프롬프트 말풍선 */}
+                    {(robotState === 'singing' || robotState === 'thinking') && lyrics && (
+                        <div className="absolute -bottom-2 md:bottom-12 2xl:bottom-24 left-1/2 -translate-x-1/2 w-[95%] md:w-full px-2 md:px-4 text-center pointer-events-none z-20">
+                            <div className="backdrop-blur-xl bg-black/40 border border-white/20 rounded-3xl md:rounded-full px-6 py-4 2xl:px-14 2xl:py-6 inline-block shadow-[0_0_20px_rgba(255,255,255,0.15)] max-w-4xl min-w-[300px]">
+                                <p className="text-white text-sm md:text-lg 2xl:text-2xl font-medium tracking-wide drop-shadow-md break-keep whitespace-pre-wrap line-clamp-3">
+                                    {lyrics}
                                 </p>
                             </div>
                         </div>

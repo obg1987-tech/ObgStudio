@@ -13,7 +13,7 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
     const [prompt, setPrompt] = useState('');
 
     const handleSubmit = () => {
-        if (!prompt.trim() || disabled || !selectedGenre) return;
+        if (disabled || !selectedGenre) return;
         onGenerate(prompt);
     };
 
@@ -82,19 +82,25 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
                     {/* Generate Button */}
                     <button
                         onClick={handleSubmit}
-                        disabled={disabled || !prompt.trim() || !hasGenre}
+                        disabled={disabled || !hasGenre}
                         className={`flex justify-center items-center px-4 py-2 md:px-6 md:py-2.5 2xl:px-10 2xl:py-4 rounded-full text-xs md:text-sm 2xl:text-2xl font-extrabold transition-all duration-300
-                            ${hasGenre && prompt.trim()
+                            ${hasGenre
                                 ? 'bg-white/90 text-black hover:bg-white hover:shadow-[0_0_15px_rgba(255,255,255,0.6)] hover:scale-105'
                                 : 'bg-white/10 text-white/30 cursor-not-allowed'
                             }
                         `}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 2xl:h-8 2xl:w-8 mr-1.5 md:mr-2 2xl:mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            {prompt.trim() ? (
+                                <>
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </>
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.1} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            )}
                         </svg>
-                        GENERATE
+                        {prompt.trim() ? "GENERATE" : "🎲 RANDOM MUSIC"}
                     </button>
                 </div>
             </div>
