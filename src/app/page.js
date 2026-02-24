@@ -357,7 +357,7 @@ const DynamicLogo = ({ genre }) => {
 };
 
 export default function Home() {
-    const [currentGenre, setCurrentGenre] = useState('');
+    const [currentGenre, setCurrentGenre] = useState('Jazz');
     const [robotState, setRobotState] = useState('idle');
     const [lyrics, setLyrics] = useState('');
     const [audioUrl, setAudioUrl] = useState(null);
