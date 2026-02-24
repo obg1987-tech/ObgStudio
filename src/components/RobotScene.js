@@ -206,7 +206,7 @@ const FaceEqualizer = ({ lipScale, barsRef, headY, faceZ, size, theme }) => {
     );
 };
 
-const RobotModel = ({ lipScale, headAngle, robotState }) => {
+const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre }) => {
     const rootRef = useRef();
     const barsRef = useRef([]);
     const frameRef = useRef(0);
@@ -415,25 +415,37 @@ const RobotModel = ({ lipScale, headAngle, robotState }) => {
             }
         }
     });
-
-    const themeMap = {
-        idle: {
-            base: new THREE.Color('#35f2ff'),
-            accent: new THREE.Color('#86ffd1'),
-            strip: new THREE.Color('#4aa3ff'),
-        },
-        singing: {
-            base: new THREE.Color('#3cf5ff'),
-            accent: new THREE.Color('#c6ffb3'),
-            strip: new THREE.Color('#5ab0ff'),
-        },
-        thinking: {
-            base: new THREE.Color('#7ee3ff'),
-            accent: new THREE.Color('#ffe59a'),
-            strip: new THREE.Color('#7aa9ff'),
-        },
+    const genreColors = {
+        'Rock': { base: '#ff4500', accent: '#ffced9', strip: '#e63900' },
+        'Hip-hop': { base: '#b967ff', accent: '#eabfff', strip: '#9a3ee8' },
+        'K-Pop': { base: '#ff71ce', accent: '#ffe3f8', strip: '#e94db0' },
+        'Lullaby': { base: '#3b82f6', accent: '#add3ff', strip: '#2563eb' },
+        'Jazz': { base: '#d4af37', accent: '#fef1d6', strip: '#b89222' }
     };
-    const theme = themeMap[robotState] || themeMap.idle;
+
+    const activeColors = genreColors[selectedGenre] || {
+        base: '#35f2ff',
+        accent: '#86ffd1',
+        strip: '#4aa3ff'
+    };
+
+    const baseColor = new THREE.Color(activeColors.base);
+    const accentColor = new THREE.Color(activeColors.accent);
+    const stripColor = new THREE.Color(activeColors.strip);
+
+    if (robotState === 'thinking') {
+        baseColor.lerp(new THREE.Color('#ffffff'), 0.4);
+        accentColor.lerp(new THREE.Color('#ffe59a'), 0.5);
+    } else if (robotState === 'singing') {
+        baseColor.offsetHSL(0, 0, 0.1);
+        accentColor.offsetHSL(0, 0, 0.1);
+    }
+
+    const theme = {
+        base: baseColor,
+        accent: accentColor,
+        strip: stripColor,
+    };
 
     return (
         <Float speed={2.6} rotationIntensity={0.08} floatIntensity={0.6} floatingRange={[-0.08, 0.08]}>
@@ -571,7 +583,7 @@ const ClubLights = () => {
     );
 };
 
-export default function RobotScene({ lipScale, headAngle, robotState }) {
+export default function RobotScene({ lipScale, headAngle, robotState, selectedGenre }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -595,7 +607,7 @@ export default function RobotScene({ lipScale, headAngle, robotState }) {
                 <Environment preset="city" environmentIntensity={1.2} />
                 <LightingSetup />
                 <ClubLights />
-                <RobotModel lipScale={lipScale} headAngle={headAngle} robotState={robotState} />
+                <RobotModel lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={selectedGenre} />
                 {!isMobile && (
                     <ContactShadows position={[0, -3.2, 0]} opacity={0.4} scale={10} blur={2.5} far={4} color="#000000" />
                 )}

@@ -432,7 +432,7 @@ export default function Home() {
             <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center z-10 relative mt-[-1rem] md:mt-[-4rem]">
                 <div className="w-full relative">
 
-                    <RobotScene lipScale={lipScale} headAngle={headAngle} robotState={robotState} />
+                    <RobotScene lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={currentGenre} />
 
                     {/* 가사 말풍선 */}
                     {robotState === 'singing' && lyrics && (
