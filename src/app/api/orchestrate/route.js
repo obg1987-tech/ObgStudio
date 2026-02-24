@@ -41,23 +41,28 @@ export async function POST(req) {
             };
         }
 
-        // 2. MusicGen (Hugging Face) 또는 Stable Audio API 호출 (예시)
-        // 실제 오디오 생성을 위한 부분입니다. 
-        // const hfResponse = await fetch("https://api-inference.huggingface.co/models/facebook/musicgen-small", {
-        //   headers: { Authorization: `Bearer ${process.env.HF_API_KEY}` },
-        //   method: "POST",
-        //   body: JSON.stringify({ inputs: orchestrationData.refined_prompt }),
-        // });
-        // const audioBlob = await hfResponse.blob();
-        // const audioUrl = ...
+        // 2. MusicGen (Hugging Face) API 호출
+        const hfResponse = await fetch("https://api-inference.huggingface.co/models/facebook/musicgen-small", {
+            headers: {
+                "Authorization": `Bearer ${process.env.HF_API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({ inputs: orchestrationData.refined_prompt }),
+        });
 
-        // 이 과제는 '시스템 구축' 목적이므로, 무료 저작권 모의(Mock) URL로 대신 처리합니다.
-        await new Promise(r => setTimeout(r, 1000));
-        const mockAudioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+        if (!hfResponse.ok) {
+            const errorText = await hfResponse.text();
+            throw new Error(`Hugging Face API Error: ${errorText}`);
+        }
+
+        const arrayBuffer = await hfResponse.arrayBuffer();
+        const base64Audio = Buffer.from(arrayBuffer).toString('base64');
+        const audioDataUrl = `data:audio/flac;base64,${base64Audio}`;
 
         return new Response(JSON.stringify({
             ...orchestrationData,
-            audio_url: mockAudioUrl
+            audio_url: audioDataUrl
         }), { status: 200, headers: { 'Content-Type': 'application/json' } });
 
     } catch (error) {
