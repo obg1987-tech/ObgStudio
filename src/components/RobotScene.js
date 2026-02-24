@@ -593,7 +593,7 @@ const ClubLights = () => {
     );
 };
 
-export default function RobotScene({ lipScale, headAngle, robotState, selectedGenre, dynamicColor, dynamicBpm }) {
+export default function RobotScene({ lipScale, headAngle, robotState, selectedGenre, dynamicColor, dynamicBpm, className = '' }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -605,7 +605,7 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
 
     return (
         <div
-            className="w-full h-[45vh] md:h-[55vh] 2xl:h-[65vh] min-h-[400px] relative mt-10 md:mt-16 pointer-events-auto flex items-center justify-center"
+            className={`w-full h-full min-h-0 relative pointer-events-auto flex items-center justify-center ${className}`}
             style={{ background: 'transparent' }}
         >
             <Canvas

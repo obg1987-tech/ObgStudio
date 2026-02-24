@@ -111,9 +111,11 @@
   background-clip: text;
   color: transparent;
   animation: liquid-gradient 6s ease infinite;
-  line-height: 1.4;
+  line-height: 1.26;
   padding-top: 0.15em;
-  padding-bottom: 0.15em;
+  padding-bottom: 0.3em;
+  display: inline-block;
+  overflow: visible;
 }
 
 /* ================================
@@ -306,9 +308,11 @@
   color: transparent;
   animation: kpop-gradient 6s ease infinite;
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
-  line-height: 1.4;
+  line-height: 1.26;
   padding-top: 0.15em;
-  padding-bottom: 0.15em;
+  padding-bottom: 0.3em;
+  display: inline-block;
+  overflow: visible;
 }
 
 @keyframes kpop-gradient {
@@ -393,10 +397,12 @@
   color: transparent;
   animation: logo-sheen 4.6s ease-in-out infinite;
   letter-spacing: -0.02em;
-  line-height: 1.4;
+  line-height: 1.26;
   padding-top: 0.15em;
-  padding-bottom: 0.15em;
+  padding-bottom: 0.3em;
   text-shadow: 0 0 18px rgba(160, 240, 255, 0.25);
+  display: inline-block;
+  overflow: visible;
 }
 
 .logo-bars .logo-bar {

@@ -245,7 +245,7 @@ const DynamicLogo = ({ genre }) => {
                     ObgStudio
                 </span>
                 {/* 데코: 불꽃 or 작은 번개 */}
-                <svg className="w-8 h-8 md:w-12 md:h-12 2xl:w-20 2xl:h-20 text-yellow-400 ml-1 2xl:ml-2 -translate-y-6 md:-translate-y-12 2xl:-translate-y-20 drop-shadow-[0_0_10px_#ffeb3b]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 md:w-12 md:h-12 2xl:w-20 2xl:h-20 text-yellow-400 ml-1 2xl:ml-2 -translate-y-1 md:-translate-y-3 2xl:-translate-y-6 drop-shadow-[0_0_10px_#ffeb3b]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.5 11c0 0-3.5 0-3.5-3.5 0-3.5 3.5-3.5 3.5-3.5S14 4 14 7.5S17.5 11 17.5 11zM6.5 11c0 0 3.5 0 3.5-3.5 0-3.5-3.5-3.5-3.5-3.5S10 4 10 7.5S6.5 11 6.5 11zM12 21c-4.4 0-8-3.6-8-8c0-3.3 2.1-6.2 5.2-7.4c.5-.2 1.1-.3 1.7-.5c-.8.6-1.4 1.4-1.6 2.4c-.6 2.3 1.8 4.3 3.8 5.6c.4.3 1.1.6 1.6.4c.4-.2.6-.7.4-1.2c-.3-.9-1-1.7-1.8-2.3c-.6-.5-1.4-1.2-1.3-2.1c.1-.8.7-1.3 1.3-1.6c-2.4-.6-4-.6-6.4 0c3.7-2.3 8.3-1.8 11.5 1.5c3.2 3.3 3.6 8.1 1 11.8C16.8 20.3 14.5 21 12 21z" />
                 </svg>
             </div>
@@ -255,17 +255,17 @@ const DynamicLogo = ({ genre }) => {
     // 2. Lullaby (Lo-fi / Chill)
     if (genre === 'Lullaby') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative theme-lofi-float">
+            <div className="flex items-center justify-center cursor-pointer relative theme-lofi-float overflow-visible">
                 {/* 로파이: 달 아이콘 */}
                 <svg className="w-14 h-14 md:w-20 md:h-20 2xl:w-32 2xl:h-32 text-[#81ecec] drop-shadow-[0_0_15px_#81ecec]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
                 </svg>
                 {/* 둥글고 부드러운 폰트 */}
-                <span className="text-5xl md:text-8xl 2xl:text-[10rem] font-semibold tracking-wide ml-3 2xl:ml-6 theme-lofi-text capitalize" style={{ fontFamily: 'Quicksand, Nunito, sans-serif' }}>
+                <span className="text-5xl md:text-8xl 2xl:text-[10rem] font-semibold tracking-wide ml-3 2xl:ml-6 theme-lofi-text capitalize leading-[1.26] pb-[0.3em] inline-block" style={{ fontFamily: 'Quicksand, Nunito, sans-serif' }}>
                     ObgStudio
                 </span>
                 {/* 데코: 구름/Zzz */}
-                <svg className="w-10 h-10 md:w-16 md:h-16 2xl:w-24 2xl:h-24 text-[#a29bfe] ml-2 2xl:ml-3 -translate-y-6 md:-translate-y-12 2xl:-translate-y-20 animate-[pulse_4s_infinite]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-10 h-10 md:w-16 md:h-16 2xl:w-24 2xl:h-24 text-[#a29bfe] ml-2 2xl:ml-3 -translate-y-1 md:-translate-y-3 2xl:-translate-y-6 animate-[pulse_4s_infinite]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
                 </svg>
             </div>
@@ -288,7 +288,7 @@ const DynamicLogo = ({ genre }) => {
                     ObgStudio
                 </span>
                 {/* 데코: 디지털 픽셀 십자 */}
-                <svg className="w-8 h-8 md:w-12 md:h-12 2xl:w-20 2xl:h-20 text-[#ff00ff] ml-2 2xl:ml-3 -translate-y-7 md:-translate-y-12 2xl:-translate-y-20" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 md:w-12 md:h-12 2xl:w-20 2xl:h-20 text-[#ff00ff] ml-2 2xl:ml-3 -translate-y-1 md:-translate-y-3 2xl:-translate-y-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8V2z" />
                 </svg>
             </div>
@@ -298,17 +298,17 @@ const DynamicLogo = ({ genre }) => {
     // 4. K-POP
     if (genre === 'K-Pop') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative transition-transform duration-300 hover:scale-[1.03]">
+            <div className="flex items-center justify-center cursor-pointer relative transition-transform duration-300 hover:scale-[1.03] overflow-visible">
                 {/* Kpop: 심장/하트 아이콘 비트 모션 */}
                 <svg className="w-14 h-14 md:w-20 md:h-20 2xl:w-32 2xl:h-32 text-[#ff71ce] drop-shadow-[0_0_15px_#ff71ce] theme-kpop-heartbeat" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                 </svg>
                 {/* Kpop: 둥글고 귀여운 폰트에 멀티컬러 그라데이션 */}
-                <span className="text-6xl md:text-8xl 2xl:text-[10rem] font-black tracking-tight ml-3 2xl:ml-6 theme-kpop-text" style={{ fontFamily: '"Comic Sans MS", "Arial Rounded MT Bold", sans-serif' }}>
+                <span className="text-6xl md:text-8xl 2xl:text-[10rem] font-black tracking-tight ml-3 2xl:ml-6 theme-kpop-text leading-[1.26] pb-[0.3em] inline-block" style={{ fontFamily: '"Comic Sans MS", "Arial Rounded MT Bold", sans-serif' }}>
                     ObgStudio
                 </span>
                 {/* 데코: 스파클(Sparkles) 아이콘 */}
-                <svg className="w-8 h-8 md:w-14 md:h-14 2xl:w-24 2xl:h-24 text-[#01cdfe] ml-1 2xl:ml-3 -translate-y-7 md:-translate-y-12 2xl:-translate-y-20 animate-[spin_3s_linear_infinite_reverse] drop-shadow-[0_0_10px_#01cdfe]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 md:w-14 md:h-14 2xl:w-24 2xl:h-24 text-[#01cdfe] ml-1 2xl:ml-3 -translate-y-1 md:-translate-y-3 2xl:-translate-y-6 animate-[spin_3s_linear_infinite_reverse] drop-shadow-[0_0_10px_#01cdfe]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 9h-4V5h-2v4h-4v2h4v4h2v-4h4V9zm-7 13c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8z" opacity="0" />
                     <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
                 </svg>
@@ -339,14 +339,14 @@ const DynamicLogo = ({ genre }) => {
 
     // Default (Original Space Sheen)
     return (
-        <div className="flex items-center justify-center cursor-pointer logo-wrap hover:scale-[1.03] transition-transform duration-500 relative">
+        <div className="flex items-center justify-center cursor-pointer logo-wrap hover:scale-[1.03] transition-transform duration-500 relative overflow-visible">
             {/* 파란색/초록색 기울어진 알약 (로고 아이콘) */}
             <div className="flex gap-2 2xl:gap-4 transform -rotate-45 relative translate-y-[2px] logo-bars transition-all duration-500">
                 <div className="w-[14px] h-[30px] md:w-[22px] md:h-[48px] 2xl:w-[32px] 2xl:h-[75px] rounded-full drop-shadow-md logo-bar transition-all duration-500"></div>
                 <div className="w-[14px] h-[30px] md:w-[22px] md:h-[48px] 2xl:w-[32px] 2xl:h-[75px] rounded-full drop-shadow-md translate-y-[12px] md:translate-y-[20px] 2xl:translate-y-[32px] logo-bar transition-all duration-500"></div>
             </div>
             {/* 텍스트 폰트 및 별 모양 데코레이션 */}
-            <span className="text-5xl md:text-8xl 2xl:text-[10rem] font-[800] tracking-[-0.03em] ml-4 md:ml-8 2xl:ml-12 logo-text transition-all duration-500">
+            <span className="text-5xl md:text-8xl 2xl:text-[10rem] font-[800] tracking-[-0.03em] ml-4 md:ml-8 2xl:ml-12 logo-text transition-all duration-500 leading-[1.26] pb-[0.3em] inline-block">
                 ObgStudio
             </span>
             <svg className="w-8 h-8 md:w-14 md:h-14 2xl:w-20 2xl:h-20 ml-[6px] md:ml-[8px] 2xl:ml-[16px] -translate-y-[12px] md:-translate-y-[24px] 2xl:-translate-y-[40px] logo-star transition-all duration-500" viewBox="0 0 24 24" fill="currentColor">
@@ -357,18 +357,22 @@ const DynamicLogo = ({ genre }) => {
 };
 
 export default function Home() {
-    const [currentGenre, setCurrentGenre] = useState('Jazz');
+    const [currentGenre, setCurrentGenre] = useState('');
     const [robotState, setRobotState] = useState('idle');
     const [lyrics, setLyrics] = useState('');
     const [audioUrl, setAudioUrl] = useState(null);
+    const [voiceText, setVoiceText] = useState('');
+    const [isMockAudio, setIsMockAudio] = useState(false);
     const [dynamicColor, setDynamicColor] = useState(null);
     const [dynamicBpm, setDynamicBpm] = useState(120);
+    const [needsManualPlay, setNeedsManualPlay] = useState(false);
 
     const [lipScale, setLipScale] = useState(0);
     const [headAngle, setHeadAngle] = useState(0);
 
     const audioRef = useRef(null);
     const analyzerRef = useRef(null);
+    const speechRef = useRef(null);
 
     const handleGenerate = async (userPrompt) => {
         try {
@@ -378,6 +382,9 @@ export default function Home() {
             setDynamicColor(null);
             setLipScale(0);
             setHeadAngle(0);
+            setNeedsManualPlay(false);
+            setVoiceText('');
+            setIsMockAudio(false);
 
             let isPolling = true;
             while (isPolling) {
@@ -403,8 +410,14 @@ export default function Home() {
 
                 setDynamicColor(data.color_code);
                 setDynamicBpm(data.bpm);
-                setLyrics(`[${data.target_theme} | ${data.bpm}BPM]\n${data.refined_prompt}`);
+                const sourceTag = data.provider ? ` | ${data.provider}` : '';
+                setLyrics(`[${data.target_theme} | ${data.bpm}BPM${sourceTag}]\n${data.refined_prompt}`);
                 setAudioUrl(data.audio_url);
+                setVoiceText(data.voice_text || '');
+                setIsMockAudio(Boolean(data.is_mock_audio));
+                if (data.warning) {
+                    setLyrics((prev) => `${prev}\n\n⚠ ${data.warning}`);
+                }
                 isPolling = false;
             }
 
@@ -418,9 +431,12 @@ export default function Home() {
     useEffect(() => {
         if (audioUrl && audioRef.current) {
             audioRef.current.crossOrigin = "anonymous";
+            audioRef.current.volume = 1;
+            audioRef.current.muted = false;
 
             audioRef.current.play().then(() => {
                 setRobotState('singing');
+                setNeedsManualPlay(false);
 
                 if (!analyzerRef.current) {
                     analyzerRef.current = new AudioAnalyzer(
@@ -430,8 +446,19 @@ export default function Home() {
                     );
                 }
                 analyzerRef.current.start();
+                if (isMockAudio && voiceText && typeof window !== 'undefined' && window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(voiceText);
+                    utterance.rate = 0.95;
+                    utterance.pitch = 1.05;
+                    utterance.volume = 0.9;
+                    speechRef.current = utterance;
+                    window.speechSynthesis.speak(utterance);
+                }
             }).catch(err => {
                 console.error("Auto-play blocked or error:", err);
+                setNeedsManualPlay(true);
+                setRobotState('idle');
             });
         }
 
@@ -439,72 +466,119 @@ export default function Home() {
             if (analyzerRef.current) {
                 analyzerRef.current.stop();
             }
+            if (typeof window !== 'undefined' && window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
         };
-    }, [audioUrl]);
+    }, [audioUrl, isMockAudio, voiceText]);
 
     const tempo = audioUrl ? headAngle : 0;
+    const handleManualPlay = async () => {
+        if (!audioRef.current) return;
+        try {
+            await audioRef.current.play();
+            setNeedsManualPlay(false);
+            setRobotState('singing');
+            if (!analyzerRef.current) {
+                analyzerRef.current = new AudioAnalyzer(
+                    audioRef.current,
+                    (lips) => setLipScale(lips),
+                    (angle) => setHeadAngle(angle)
+                );
+            }
+            analyzerRef.current.start();
+            if (isMockAudio && voiceText && typeof window !== 'undefined' && window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(voiceText);
+                utterance.rate = 0.95;
+                utterance.pitch = 1.05;
+                utterance.volume = 0.9;
+                speechRef.current = utterance;
+                window.speechSynthesis.speak(utterance);
+            }
+        } catch (err) {
+            console.error("Manual play failed:", err);
+        }
+    };
 
     return (
-        <main className="min-h-screen bg-black text-white flex flex-col items-center justify-between relative overflow-x-hidden font-sans">
+        <main className="h-screen max-h-screen bg-black text-white relative overflow-hidden font-sans">
             <Starfield tempo={tempo} selectedGenre={currentGenre} />
 
-            {/* 1. Header (로고) - 반응형 높이 할당: TV 및 모바일 밸런스 유지 */}
-            <header className="w-full h-[100px] sm:h-[120px] md:h-[180px] 2xl:h-[260px] md:mt-10 2xl:mt-16 px-4 md:px-16 flex justify-center items-center z-10 transition-all duration-500 shrink-0">
-                <DynamicLogo genre={currentGenre} />
-            </header>
+            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(68px,12vh)_minmax(210px,1fr)_minmax(165px,29vh)] 2xl:grid-rows-[minmax(102px,14vh)_minmax(340px,1fr)_minmax(210px,27vh)] [@media(min-width:1920px)]:grid-rows-[minmax(122px,15vh)_minmax(430px,1fr)_minmax(228px,25vh)] [@media(min-width:2560px)]:grid-rows-[minmax(145px,16vh)_minmax(530px,1fr)_minmax(255px,23vh)]">
+                <header className="w-full px-3 md:px-10 flex justify-center items-center min-h-0 relative z-30 overflow-visible pb-[0.4vh] md:pb-[0.8vh]">
+                    <div className="origin-center translate-y-[0.6vh] md:translate-y-[0.9vh] 2xl:translate-y-[1.1vh] [@media(min-width:1920px)]:translate-y-[1.3vh] [@media(min-width:2560px)]:translate-y-[1.5vh] scale-[0.62] sm:scale-[0.72] md:scale-[0.86] xl:scale-95 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
+                        <DynamicLogo genre={currentGenre} />
+                    </div>
+                </header>
 
-            {/* 2. Main Center (3D 로봇 및 가사 배치) */}
-            <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center z-10 relative mt-[-1rem] md:mt-[-4rem]">
-                <div className="w-full max-w-[95%] sm:max-w-2xl md:max-w-5xl 2xl:max-w-7xl relative">
+                <div className="w-full min-h-0 flex items-center justify-center px-2 md:px-6 [@media(min-width:1920px)]:px-8 [@media(min-width:2560px)]:px-10 -translate-y-[1.5vh] md:-translate-y-[2vh] [@media(min-width:1920px)]:-translate-y-[2.4vh] [@media(min-width:2560px)]:-translate-y-[2.6vh] relative z-20">
+                    <div className="w-full max-w-[95vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-0 relative">
+                        <RobotScene
+                            lipScale={lipScale}
+                            headAngle={headAngle}
+                            robotState={robotState}
+                            selectedGenre={currentGenre}
+                            dynamicColor={dynamicColor}
+                            dynamicBpm={dynamicBpm}
+                        />
 
-                    <RobotScene
-                        lipScale={lipScale}
-                        headAngle={headAngle}
-                        robotState={robotState}
-                        selectedGenre={currentGenre}
-                        dynamicColor={dynamicColor}
-                        dynamicBpm={dynamicBpm}
-                    />
-
-                    {/* 제미니 결과값 및 프롬프트 말풍선 */}
-                    {(robotState === 'singing' || robotState === 'thinking') && lyrics && (
-                        <div className="absolute -bottom-2 md:bottom-12 2xl:bottom-24 left-1/2 -translate-x-1/2 w-[95%] md:w-full px-2 md:px-4 text-center pointer-events-none z-20">
-                            <div className="backdrop-blur-xl bg-black/40 border border-white/20 rounded-3xl md:rounded-full px-6 py-4 2xl:px-14 2xl:py-6 inline-block shadow-[0_0_20px_rgba(255,255,255,0.15)] max-w-4xl min-w-[300px]">
-                                <p className="text-white text-sm md:text-lg 2xl:text-2xl font-medium tracking-wide drop-shadow-md break-keep whitespace-pre-wrap line-clamp-3">
-                                    {lyrics}
-                                </p>
+                        {(robotState === 'singing' || robotState === 'thinking') && lyrics && (
+                            <div className="absolute bottom-2 md:bottom-8 left-1/2 -translate-x-1/2 w-[96%] md:w-full px-2 md:px-4 text-center pointer-events-none z-20">
+                                <div className="backdrop-blur-xl bg-black/40 border border-white/20 rounded-2xl md:rounded-full px-4 py-2.5 md:px-8 md:py-3 inline-block shadow-[0_0_20px_rgba(255,255,255,0.15)] max-w-4xl min-w-[240px]">
+                                    <p className="text-white text-xs md:text-base 2xl:text-xl font-medium tracking-wide drop-shadow-md break-keep whitespace-pre-wrap line-clamp-3">
+                                        {lyrics}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
+                </div>
+
+                <div className="w-full z-20 flex items-end justify-center px-2 pb-2 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
+                    <div className="w-full max-w-[98vw] md:max-w-[92vw] xl:max-w-[1400px] 2xl:max-w-[1650px] [@media(min-width:1920px)]:max-w-[1920px] [@media(min-width:2560px)]:max-w-[2200px] origin-bottom scale-[0.86] sm:scale-[0.91] md:scale-[0.96] 2xl:scale-[1.01] [@media(min-width:1920px)]:scale-[1.06] [@media(min-width:2560px)]:scale-[1.16]">
+                        <PromptInput
+                            onGenerate={handleGenerate}
+                            disabled={robotState === 'thinking'}
+                            selectedGenre={currentGenre}
+                            onSelectGenre={setCurrentGenre}
+                        />
+                    </div>
                 </div>
             </div>
 
-            {/* 3. Bottom UI (프롬프트 입력창) */}
-            <div className="w-full pb-6 md:pb-10 pt-2 2xl:pb-20 z-20 flex flex-col items-center">
-                <PromptInput
-                    onGenerate={handleGenerate}
-                    disabled={robotState === 'thinking'}
-                    selectedGenre={currentGenre}
-                    onSelectGenre={setCurrentGenre}
-                />
-            </div>
-
-            {/* 오디오 엘리먼트 */}
             {
                 audioUrl && (
                     <audio
                         ref={audioRef}
                         src={audioUrl}
-                        className="hidden"
+                        className="fixed bottom-4 left-4 z-40"
                         controls
+                        onError={() => {
+                            setLyrics('Audio source failed to load.');
+                            setNeedsManualPlay(false);
+                            setRobotState('idle');
+                        }}
                         onEnded={() => {
                             setRobotState('idle');
                             setLyrics('');
                             if (analyzerRef.current) analyzerRef.current.stop();
+                            if (typeof window !== 'undefined' && window.speechSynthesis) {
+                                window.speechSynthesis.cancel();
+                            }
                         }}
                     />
                 )
             }
+
+            {audioUrl && needsManualPlay && (
+                <button
+                    onClick={handleManualPlay}
+                    className="fixed bottom-20 left-4 z-40 rounded-full bg-white text-black px-4 py-2 font-bold"
+                >
+                    Play Audio
+                </button>
+            )}
 
             {/* 4. 우측 하단 고정 로고 이동됨 */}
 
