@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "map:real-tracks": "node scripts/map_real_tracks.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

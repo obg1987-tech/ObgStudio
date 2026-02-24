@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "real-001",
+    "theme": "rock",
+    "title": "ROCK Track 01 (Replace with vocal file)",
+    "bpm": 135,
+    "file": "/tracks_real_assets/rock/rock-vocal-01.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-002",
+    "theme": "rock",
+    "title": "ROCK Track 02 (Replace with vocal file)",
+    "bpm": 137,
+    "file": "/tracks_real_assets/rock/rock-vocal-02.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-003",
+    "theme": "rock",
+    "title": "ROCK Track 03 (Replace with vocal file)",
+    "bpm": 139,
+    "file": "/tracks_real_assets/rock/rock-vocal-03.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-004",
+    "theme": "rock",
+    "title": "ROCK Track 04 (Replace with vocal file)",
+    "bpm": 141,
+    "file": "/tracks_real_assets/rock/rock-vocal-04.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-005",
+    "theme": "rock",
+    "title": "ROCK Track 05 (Replace with vocal file)",
+    "bpm": 143,
+    "file": "/tracks_real_assets/rock/rock-vocal-05.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-006",
+    "theme": "rock",
+    "title": "ROCK Track 06 (Replace with vocal file)",
+    "bpm": 145,
+    "file": "/tracks_real_assets/rock/rock-vocal-06.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-007",
+    "theme": "rock",
+    "title": "ROCK Track 07 (Replace with vocal file)",
+    "bpm": 147,
+    "file": "/tracks_real_assets/rock/rock-vocal-07.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-008",
+    "theme": "rock",
+    "title": "ROCK Track 08 (Replace with vocal file)",
+    "bpm": 149,
+    "file": "/tracks_real_assets/rock/rock-vocal-08.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-009",
+    "theme": "rock",
+    "title": "ROCK Track 09 (Replace with vocal file)",
+    "bpm": 121,
+    "file": "/tracks_real_assets/rock/rock-vocal-09.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-010",
+    "theme": "rock",
+    "title": "ROCK Track 10 (Replace with vocal file)",
+    "bpm": 123,
+    "file": "/tracks_real_assets/rock/rock-vocal-10.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-011",
+    "theme": "rock",
+    "title": "ROCK Track 11 (Replace with vocal file)",
+    "bpm": 125,
+    "file": "/tracks_real_assets/rock/rock-vocal-11.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-012",
+    "theme": "rock",
+    "title": "ROCK Track 12 (Replace with vocal file)",
+    "bpm": 128,
+    "file": "/tracks_real_assets/rock/rock-vocal-12.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-013",
+    "theme": "rock",
+    "title": "ROCK Track 13 (Replace with vocal file)",
+    "bpm": 130,
+    "file": "/tracks_real_assets/rock/rock-vocal-13.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-014",
+    "theme": "rock",
+    "title": "ROCK Track 14 (Replace with vocal file)",
+    "bpm": 132,
+    "file": "/tracks_real_assets/rock/rock-vocal-14.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-015",
+    "theme": "rock",
+    "title": "ROCK Track 15 (Replace with vocal file)",
+    "bpm": 134,
+    "file": "/tracks_real_assets/rock/rock-vocal-15.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-016",
+    "theme": "rock",
+    "title": "ROCK Track 16 (Replace with vocal file)",
+    "bpm": 136,
+    "file": "/tracks_real_assets/rock/rock-vocal-16.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-017",
+    "theme": "rock",
+    "title": "ROCK Track 17 (Replace with vocal file)",
+    "bpm": 138,
+    "file": "/tracks_real_assets/rock/rock-vocal-17.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-018",
+    "theme": "rock",
+    "title": "ROCK Track 18 (Replace with vocal file)",
+    "bpm": 140,
+    "file": "/tracks_real_assets/rock/rock-vocal-18.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-019",
+    "theme": "rock",
+    "title": "ROCK Track 19 (Replace with vocal file)",
+    "bpm": 142,
+    "file": "/tracks_real_assets/rock/rock-vocal-19.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-020",
+    "theme": "rock",
+    "title": "ROCK Track 20 (Replace with vocal file)",
+    "bpm": 144,
+    "file": "/tracks_real_assets/rock/rock-vocal-20.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-021",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 01 (Replace with vocal file)",
+    "bpm": 91,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-01.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-022",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 02 (Replace with vocal file)",
+    "bpm": 92,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-02.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-023",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 03 (Replace with vocal file)",
+    "bpm": 94,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-03.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-024",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 04 (Replace with vocal file)",
+    "bpm": 95,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-04.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-025",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 05 (Replace with vocal file)",
+    "bpm": 97,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-05.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-026",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 06 (Replace with vocal file)",
+    "bpm": 99,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-06.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-027",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 07 (Replace with vocal file)",
+    "bpm": 78,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-07.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-028",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 08 (Replace with vocal file)",
+    "bpm": 80,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-08.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-029",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 09 (Replace with vocal file)",
+    "bpm": 81,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-09.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-030",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 10 (Replace with vocal file)",
+    "bpm": 83,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-10.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-031",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 11 (Replace with vocal file)",
+    "bpm": 84,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-11.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-032",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 12 (Replace with vocal file)",
+    "bpm": 86,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-12.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-033",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 13 (Replace with vocal file)",
+    "bpm": 87,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-13.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-034",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 14 (Replace with vocal file)",
+    "bpm": 89,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-14.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-035",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 15 (Replace with vocal file)",
+    "bpm": 90,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-15.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-036",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 16 (Replace with vocal file)",
+    "bpm": 92,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-16.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-037",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 17 (Replace with vocal file)",
+    "bpm": 93,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-17.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-038",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 18 (Replace with vocal file)",
+    "bpm": 95,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-18.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-039",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 19 (Replace with vocal file)",
+    "bpm": 96,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-19.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-040",
+    "theme": "hiphop",
+    "title": "HIPHOP Track 20 (Replace with vocal file)",
+    "bpm": 98,
+    "file": "/tracks_real_assets/hiphop/hiphop-vocal-20.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-041",
+    "theme": "kpop",
+    "title": "KPOP Track 01 (Replace with vocal file)",
+    "bpm": 118,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-01.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-042",
+    "theme": "kpop",
+    "title": "KPOP Track 02 (Replace with vocal file)",
+    "bpm": 120,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-02.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-043",
+    "theme": "kpop",
+    "title": "KPOP Track 03 (Replace with vocal file)",
+    "bpm": 122,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-03.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-044",
+    "theme": "kpop",
+    "title": "KPOP Track 04 (Replace with vocal file)",
+    "bpm": 124,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-04.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-045",
+    "theme": "kpop",
+    "title": "KPOP Track 05 (Replace with vocal file)",
+    "bpm": 126,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-05.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-046",
+    "theme": "kpop",
+    "title": "KPOP Track 06 (Replace with vocal file)",
+    "bpm": 128,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-06.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-047",
+    "theme": "kpop",
+    "title": "KPOP Track 07 (Replace with vocal file)",
+    "bpm": 129,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-07.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-048",
+    "theme": "kpop",
+    "title": "KPOP Track 08 (Replace with vocal file)",
+    "bpm": 131,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-08.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-049",
+    "theme": "kpop",
+    "title": "KPOP Track 09 (Replace with vocal file)",
+    "bpm": 106,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-09.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-050",
+    "theme": "kpop",
+    "title": "KPOP Track 10 (Replace with vocal file)",
+    "bpm": 108,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-10.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-051",
+    "theme": "kpop",
+    "title": "KPOP Track 11 (Replace with vocal file)",
+    "bpm": 110,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-11.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-052",
+    "theme": "kpop",
+    "title": "KPOP Track 12 (Replace with vocal file)",
+    "bpm": 112,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-12.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-053",
+    "theme": "kpop",
+    "title": "KPOP Track 13 (Replace with vocal file)",
+    "bpm": 114,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-13.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-054",
+    "theme": "kpop",
+    "title": "KPOP Track 14 (Replace with vocal file)",
+    "bpm": 115,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-14.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-055",
+    "theme": "kpop",
+    "title": "KPOP Track 15 (Replace with vocal file)",
+    "bpm": 117,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-15.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-056",
+    "theme": "kpop",
+    "title": "KPOP Track 16 (Replace with vocal file)",
+    "bpm": 119,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-16.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-057",
+    "theme": "kpop",
+    "title": "KPOP Track 17 (Replace with vocal file)",
+    "bpm": 121,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-17.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-058",
+    "theme": "kpop",
+    "title": "KPOP Track 18 (Replace with vocal file)",
+    "bpm": 123,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-18.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-059",
+    "theme": "kpop",
+    "title": "KPOP Track 19 (Replace with vocal file)",
+    "bpm": 125,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-19.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-060",
+    "theme": "kpop",
+    "title": "KPOP Track 20 (Replace with vocal file)",
+    "bpm": 127,
+    "file": "/tracks_real_assets/kpop/kpop-vocal-20.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-061",
+    "theme": "lullaby",
+    "title": "LULLABY Track 01 (Replace with vocal file)",
+    "bpm": 81,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-01.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-062",
+    "theme": "lullaby",
+    "title": "LULLABY Track 02 (Replace with vocal file)",
+    "bpm": 82,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-02.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-063",
+    "theme": "lullaby",
+    "title": "LULLABY Track 03 (Replace with vocal file)",
+    "bpm": 83,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-03.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-064",
+    "theme": "lullaby",
+    "title": "LULLABY Track 04 (Replace with vocal file)",
+    "bpm": 85,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-04.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-065",
+    "theme": "lullaby",
+    "title": "LULLABY Track 05 (Replace with vocal file)",
+    "bpm": 86,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-05.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-066",
+    "theme": "lullaby",
+    "title": "LULLABY Track 06 (Replace with vocal file)",
+    "bpm": 68,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-06.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-067",
+    "theme": "lullaby",
+    "title": "LULLABY Track 07 (Replace with vocal file)",
+    "bpm": 69,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-07.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-068",
+    "theme": "lullaby",
+    "title": "LULLABY Track 08 (Replace with vocal file)",
+    "bpm": 70,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-08.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-069",
+    "theme": "lullaby",
+    "title": "LULLABY Track 09 (Replace with vocal file)",
+    "bpm": 72,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-09.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-070",
+    "theme": "lullaby",
+    "title": "LULLABY Track 10 (Replace with vocal file)",
+    "bpm": 73,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-10.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-071",
+    "theme": "lullaby",
+    "title": "LULLABY Track 11 (Replace with vocal file)",
+    "bpm": 75,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-11.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-072",
+    "theme": "lullaby",
+    "title": "LULLABY Track 12 (Replace with vocal file)",
+    "bpm": 76,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-12.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-073",
+    "theme": "lullaby",
+    "title": "LULLABY Track 13 (Replace with vocal file)",
+    "bpm": 77,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-13.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-074",
+    "theme": "lullaby",
+    "title": "LULLABY Track 14 (Replace with vocal file)",
+    "bpm": 79,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-14.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-075",
+    "theme": "lullaby",
+    "title": "LULLABY Track 15 (Replace with vocal file)",
+    "bpm": 80,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-15.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-076",
+    "theme": "lullaby",
+    "title": "LULLABY Track 16 (Replace with vocal file)",
+    "bpm": 81,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-16.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-077",
+    "theme": "lullaby",
+    "title": "LULLABY Track 17 (Replace with vocal file)",
+    "bpm": 83,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-17.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-078",
+    "theme": "lullaby",
+    "title": "LULLABY Track 18 (Replace with vocal file)",
+    "bpm": 84,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-18.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-079",
+    "theme": "lullaby",
+    "title": "LULLABY Track 19 (Replace with vocal file)",
+    "bpm": 86,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-19.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-080",
+    "theme": "lullaby",
+    "title": "LULLABY Track 20 (Replace with vocal file)",
+    "bpm": 87,
+    "file": "/tracks_real_assets/lullaby/lullaby-vocal-20.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-081",
+    "theme": "jazz",
+    "title": "JAZZ Track 01 (Replace with vocal file)",
+    "bpm": 111,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-01.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-082",
+    "theme": "jazz",
+    "title": "JAZZ Track 02 (Replace with vocal file)",
+    "bpm": 114,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-02.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-083",
+    "theme": "jazz",
+    "title": "JAZZ Track 03 (Replace with vocal file)",
+    "bpm": 116,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-03.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-084",
+    "theme": "jazz",
+    "title": "JAZZ Track 04 (Replace with vocal file)",
+    "bpm": 118,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-04.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-085",
+    "theme": "jazz",
+    "title": "JAZZ Track 05 (Replace with vocal file)",
+    "bpm": 120,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-05.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-086",
+    "theme": "jazz",
+    "title": "JAZZ Track 06 (Replace with vocal file)",
+    "bpm": 123,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-06.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-087",
+    "theme": "jazz",
+    "title": "JAZZ Track 07 (Replace with vocal file)",
+    "bpm": 125,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-07.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-088",
+    "theme": "jazz",
+    "title": "JAZZ Track 08 (Replace with vocal file)",
+    "bpm": 127,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-08.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-089",
+    "theme": "jazz",
+    "title": "JAZZ Track 09 (Replace with vocal file)",
+    "bpm": 96,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-09.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-090",
+    "theme": "jazz",
+    "title": "JAZZ Track 10 (Replace with vocal file)",
+    "bpm": 99,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-10.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-091",
+    "theme": "jazz",
+    "title": "JAZZ Track 11 (Replace with vocal file)",
+    "bpm": 101,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-11.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-092",
+    "theme": "jazz",
+    "title": "JAZZ Track 12 (Replace with vocal file)",
+    "bpm": 103,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-12.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-093",
+    "theme": "jazz",
+    "title": "JAZZ Track 13 (Replace with vocal file)",
+    "bpm": 106,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-13.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-094",
+    "theme": "jazz",
+    "title": "JAZZ Track 14 (Replace with vocal file)",
+    "bpm": 108,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-14.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-095",
+    "theme": "jazz",
+    "title": "JAZZ Track 15 (Replace with vocal file)",
+    "bpm": 110,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-15.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-096",
+    "theme": "jazz",
+    "title": "JAZZ Track 16 (Replace with vocal file)",
+    "bpm": 112,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-16.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-097",
+    "theme": "jazz",
+    "title": "JAZZ Track 17 (Replace with vocal file)",
+    "bpm": 115,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-17.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-098",
+    "theme": "jazz",
+    "title": "JAZZ Track 18 (Replace with vocal file)",
+    "bpm": 117,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-18.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-099",
+    "theme": "jazz",
+    "title": "JAZZ Track 19 (Replace with vocal file)",
+    "bpm": 119,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-19.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  },
+  {
+    "id": "real-100",
+    "theme": "jazz",
+    "title": "JAZZ Track 20 (Replace with vocal file)",
+    "bpm": 122,
+    "file": "/tracks_real_assets/jazz/jazz-vocal-20.wav",
+    "vocal": true,
+    "tags": [
+      "vocal",
+      "template",
+      "real"
+    ],
+    "license": "TEMPLATE: replace file path with your licensed vocal track."
+  }
+]

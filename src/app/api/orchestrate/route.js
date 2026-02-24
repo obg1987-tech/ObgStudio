@@ -5,8 +5,44 @@ import path from "path";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "dummy_key");
 const GEMINI_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash"];
 
-const TRACKS_PATH = path.join(process.cwd(), "public", "tracks", "tracks.json");
-const TRACKS = JSON.parse(fs.readFileSync(TRACKS_PATH, "utf8"));
+const TRACK_MODE = (process.env.MOCK_TRACK_MODE || "synthetic").toLowerCase();
+
+const hasVocalTag = (track) => {
+  if (track?.vocal === true) return true;
+  const merged = `${track?.title || ""} ${track?.file || ""} ${(track?.tags || []).join(" ")}`.toLowerCase();
+  return /\bvocal\b|\bsinger\b|\bvoice\b|\blyrics?\b/.test(merged);
+};
+
+function loadTracks() {
+  const tracksDir = path.join(process.cwd(), "public", "tracks");
+  const orderedCandidates =
+    TRACK_MODE === "vocal_only"
+      ? ["tracks_real.json"]
+      : TRACK_MODE === "real"
+        ? ["tracks_real.json", "tracks.json"]
+        : ["tracks.json", "tracks_real.json"];
+
+  for (const fileName of orderedCandidates) {
+    const fullPath = path.join(tracksDir, fileName);
+    if (!fs.existsSync(fullPath)) continue;
+    const parsed = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      const filtered =
+        TRACK_MODE === "vocal_only" ? parsed.filter((t) => hasVocalTag(t)) : parsed;
+      if (filtered.length > 0) {
+        return { tracks: filtered, sourceFile: fileName };
+      }
+    }
+  }
+
+  if (TRACK_MODE === "vocal_only") {
+    throw new Error("Vocal-only mode requires public/tracks/tracks_real.json with vocal-tagged tracks.");
+  }
+
+  throw new Error("No track metadata found. Expected tracks.json or tracks_real.json in public/tracks.");
+}
+
+const { tracks: TRACKS, sourceFile: TRACK_SOURCE_FILE } = loadTracks();
 
 const themeMap = {
   Rock: "rock",
@@ -94,6 +130,8 @@ export async function POST(req) {
         audio_url: selectedTrack.file,
         provider: "preset_pool",
         is_mock_audio: true,
+        mock_track_mode: TRACK_MODE,
+        track_source_file: TRACK_SOURCE_FILE,
         selected_track: selectedTrack.id,
         warning: "Portfolio demo mode: track selected from theme-based preset pool.",
       }),
