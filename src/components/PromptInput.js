@@ -64,7 +64,7 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
           onChange={(e) => setPrompt(e.target.value)}
           placeholder={hasGenre ? `${activeGenreObj.label} 스타일의 음악을 어떻게 만들지 설명해 주세요...` : '먼저 아래에서 음악 테마를 선택해 주세요.'}
           disabled={disabled}
-          className="w-full bg-transparent text-white placeholder-white/30 p-4 md:p-5 2xl:p-8 outline-none resize-none min-h-[80px] md:min-h-[100px] 2xl:min-h-[180px] text-[15px] md:text-lg 2xl:text-3xl disabled:opacity-50"
+          className="w-full bg-transparent text-white placeholder-white/30 p-4 md:p-4 2xl:p-7 outline-none resize-none min-h-[72px] md:min-h-[84px] 2xl:min-h-[150px] text-[15px] md:text-lg 2xl:text-3xl disabled:opacity-50"
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault();
@@ -73,7 +73,7 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
           }}
         />
 
-        <div className="px-4 md:px-5 2xl:px-8 py-3 2xl:py-5 bg-white/5 border-t border-white/10">
+        <div className="px-4 md:px-5 2xl:px-8 py-2.5 md:py-2.5 2xl:py-4 bg-white/5 border-t border-white/10">
           <div className="grid grid-cols-3 gap-2 md:hidden">
             {GENRES.map(renderGenreButton)}
             <button

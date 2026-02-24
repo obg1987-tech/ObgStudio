@@ -219,7 +219,7 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicCol
         const center = new THREE.Vector3();
         box.getSize(size);
         box.getCenter(center);
-        const targetHeight = 2.9;
+        const targetHeight = 2.65;
         const scale = targetHeight / Math.max(size.y, 0.001);
 
         clone.traverse((child) => {
@@ -459,7 +459,7 @@ const RobotModel = ({ lipScale, headAngle, robotState, selectedGenre, dynamicCol
 
     return (
         <Float speed={2.6} rotationIntensity={0.08} floatIntensity={0.6} floatingRange={[-0.08, 0.08]}>
-            <group ref={group} position={[0, -0.6, 0]} scale={[scale * 1.04, scale, scale * 1.04]}>
+            <group ref={group} position={[0, -0.32, 0]} scale={[scale * 1.04, scale, scale * 1.04]}>
                 <primitive object={model} />
                 {/* Rounded silhouette shell */}
                 <group>
