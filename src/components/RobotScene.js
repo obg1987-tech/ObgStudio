@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useRef, useState, useEffect } from 'react';
+import React, { Suspense, useMemo, useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Environment, Float, ContactShadows, RoundedBox, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
@@ -563,6 +563,19 @@ const LightingSetup = () => {
     );
 };
 
+const RobotFallback = () => (
+    <group>
+        <mesh position={[0, -0.2, 0]}>
+            <sphereGeometry args={[1.35, 32, 32]} />
+            <meshStandardMaterial color="#d8dce8" metalness={0.2} roughness={0.5} />
+        </mesh>
+        <mesh position={[0, 0.12, 1.05]}>
+            <boxGeometry args={[1.7, 0.44, 0.22]} />
+            <meshStandardMaterial color="#0b0d12" emissive="#0d1119" emissiveIntensity={0.6} />
+        </mesh>
+    </group>
+);
+
 const ClubLights = () => {
     const l1 = useRef();
     const l2 = useRef();
@@ -617,7 +630,9 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
                 <Environment preset="city" environmentIntensity={1.2} />
                 <LightingSetup />
                 <ClubLights />
-                <RobotModel lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={selectedGenre} dynamicColor={dynamicColor} dynamicBpm={dynamicBpm} />
+                <Suspense fallback={<RobotFallback />}>
+                    <RobotModel lipScale={lipScale} headAngle={headAngle} robotState={robotState} selectedGenre={selectedGenre} dynamicColor={dynamicColor} dynamicBpm={dynamicBpm} />
+                </Suspense>
                 {!isMobile && (
                     <ContactShadows position={[0, -3.2, 0]} opacity={0.4} scale={10} blur={2.5} far={4} color="#000000" />
                 )}
