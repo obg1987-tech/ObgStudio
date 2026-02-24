@@ -356,6 +356,20 @@ export default function Home() {
     const selectedGenreRef = useRef('');
     const isThemeLockedByTrack = Boolean(audioUrl);
 
+    useEffect(() => {
+        const setAppHeight = () => {
+            const h = window.innerHeight;
+            document.documentElement.style.setProperty('--app-h', `${h}px`);
+        };
+        setAppHeight();
+        window.addEventListener('resize', setAppHeight);
+        window.addEventListener('orientationchange', setAppHeight);
+        return () => {
+            window.removeEventListener('resize', setAppHeight);
+            window.removeEventListener('orientationchange', setAppHeight);
+        };
+    }, []);
+
     const handleSelectGenre = (nextGenre) => {
         selectedGenreRef.current = nextGenre;
         setCurrentGenre(nextGenre);
@@ -530,18 +544,24 @@ export default function Home() {
     };
 
     return (
-        <main className="h-[100dvh] min-h-[100dvh] bg-black text-white relative overflow-hidden font-sans pb-[env(safe-area-inset-bottom)]">
+        <main
+            className="bg-black text-white relative overflow-hidden font-sans pb-[env(safe-area-inset-bottom)]"
+            style={{
+                height: 'var(--app-h, 100svh)',
+                minHeight: 'var(--app-h, 100svh)',
+            }}
+        >
             <Starfield selectedGenre={displayGenre} />
 
-            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(56px,10vh)_minmax(240px,49vh)_minmax(160px,41vh)] md:grid-rows-[minmax(68px,11vh)_minmax(320px,1fr)_minmax(132px,21vh)] 2xl:grid-rows-[minmax(98px,12vh)_minmax(400px,1fr)_minmax(168px,20vh)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13vh)_minmax(500px,1fr)_minmax(185px,19vh)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14vh)_minmax(590px,1fr)_minmax(215px,18vh)]">
-                <header className="w-full px-3 md:px-10 flex justify-center items-center min-h-0 relative z-30 overflow-visible pb-[0.4vh] md:pb-[0.8vh]">
-                    <div className="origin-center translate-y-[0.2vh] md:translate-y-[0.9vh] 2xl:translate-y-[1.1vh] [@media(min-width:1920px)]:translate-y-[1.3vh] [@media(min-width:2560px)]:translate-y-[1.5vh] scale-[0.46] sm:scale-[0.58] md:scale-[0.86] xl:scale-95 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
+            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(48px,10%)_minmax(220px,50%)_minmax(150px,40%)] md:grid-rows-[minmax(68px,11%)_minmax(320px,1fr)_minmax(132px,21%)] 2xl:grid-rows-[minmax(98px,12%)_minmax(400px,1fr)_minmax(168px,20%)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13%)_minmax(500px,1fr)_minmax(185px,19%)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14%)_minmax(590px,1fr)_minmax(215px,18%)]">
+                <header className="w-full px-3 md:px-10 flex justify-center items-center min-h-0 relative z-30 overflow-visible pb-1 md:pb-2">
+                    <div className="origin-center translate-y-[1px] md:translate-y-[8px] 2xl:translate-y-[12px] [@media(min-width:1920px)]:translate-y-[14px] [@media(min-width:2560px)]:translate-y-[16px] scale-[0.44] sm:scale-[0.56] md:scale-[0.86] xl:scale-95 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
                         <DynamicLogo genre={displayGenre} />
                     </div>
                 </header>
 
-                <div className="w-full min-h-0 flex items-center justify-center px-2 md:px-6 [@media(min-width:1920px)]:px-8 [@media(min-width:2560px)]:px-10 relative z-20 md:-translate-y-[1.4vh] [@media(min-width:1920px)]:-translate-y-[1.8vh] [@media(min-width:2560px)]:-translate-y-[2.2vh]">
-                    <div className="w-full max-w-[96vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[220px] md:min-h-[320px] relative scale-[0.95] sm:scale-[0.98] md:scale-100">
+                <div className="w-full min-h-0 flex items-center justify-center px-2 md:px-6 [@media(min-width:1920px)]:px-8 [@media(min-width:2560px)]:px-10 relative z-20 md:-translate-y-[10px] [@media(min-width:1920px)]:-translate-y-[16px] [@media(min-width:2560px)]:-translate-y-[20px]">
+                    <div className="w-full max-w-[96vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[220px] md:min-h-[320px] relative scale-[0.92] sm:scale-[0.96] md:scale-100">
                         <RobotScene
                             lipScale={lipScale}
                             headAngle={headAngle}
