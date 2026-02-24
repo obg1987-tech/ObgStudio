@@ -1,0 +1,43 @@
+ ⨯ src\app\page.js (106:22) @ RobotScene
+ ⨯ ReferenceError: RobotScene is not defined
+    at Home (./src/app/page.js:196:101)
+digest: "2191306397"
+[0m [90m 104 |[39m                 [33m<[39m[33mdiv[39m className[33m=[39m[32m"w-full relative"[39m[33m>[39m[0m
+[0m [90m 105 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 106 |[39m                     [33m<[39m[33mRobotScene[39m lipScale[33m=[39m{lipScale} headAngle[33m=[39m{headAngle} robotState[33m=[39m{robotState} [33m/[39m[33m>[39m[0m
+[0m [90m     |[39m                      [31m[1m^[22m[39m[0m
+[0m [90m 107 |[39m[0m
+[0m [90m 108 |[39m                     {[90m/* 가사 말풍선 */[39m}[0m
+[0m [90m 109 |[39m                     {robotState [33m===[39m [32m'singing'[39m [33m&&[39m lyrics [33m&&[39m ([0m
+ ⨯ ./src/components/RobotScene.js:6:1
+Module not found: Can't resolve 'three/examples/jsm/modifiers/SubdivisionModifier.js'
+[0m [90m 4 |[39m [36mimport[39m { [33mCanvas[39m[33m,[39m useFrame } [36mfrom[39m [32m'@react-three/fiber'[39m[33m;[39m[0m
+[0m [90m 5 |[39m [36mimport[39m { [33mEnvironment[39m[33m,[39m [33mFloat[39m[33m,[39m [33mContactShadows[39m[33m,[39m [33mRoundedBox[39m[33m,[39m useGLTF } [36mfrom[39m [32m'@react-three/drei'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { [33mSubdivisionModifier[39m } [36mfrom[39m [32m'three/examples/jsm/modifiers/SubdivisionModifier.js'[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 7 |[39m [36mimport[39m [33m*[39m [36mas[39m [33mTHREE[39m [36mfrom[39m [32m'three'[39m[33m;[39m[0m
+[0m [90m 8 |[39m[0m
+[0m [90m 9 |[39m [36mconst[39m neonCyan [33m=[39m [36mnew[39m [33mTHREE[39m[33m.[39m[33mColor[39m([32m'#26f5ff'[39m)[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/app/page.js
+ ⨯ ./src/components/RobotScene.js:6:1
+Module not found: Can't resolve 'three/examples/jsm/modifiers/SubdivisionModifier.js'
+[0m [90m 4 |[39m [36mimport[39m { [33mCanvas[39m[33m,[39m useFrame } [36mfrom[39m [32m'@react-three/fiber'[39m[33m;[39m[0m
+[0m [90m 5 |[39m [36mimport[39m { [33mEnvironment[39m[33m,[39m [33mFloat[39m[33m,[39m [33mContactShadows[39m[33m,[39m [33mRoundedBox[39m[33m,[39m useGLTF } [36mfrom[39m [32m'@react-three/drei'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { [33mSubdivisionModifier[39m } [36mfrom[39m [32m'three/examples/jsm/modifiers/SubdivisionModifier.js'[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 7 |[39m [36mimport[39m [33m*[39m [36mas[39m [33mTHREE[39m [36mfrom[39m [32m'three'[39m[33m;[39m[0m
+[0m [90m 8 |[39m[0m
+[0m [90m 9 |[39m [36mconst[39m neonCyan [33m=[39m [36mnew[39m [33mTHREE[39m[33m.[39m[33mColor[39m([32m'#26f5ff'[39m)[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/app/page.js
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.

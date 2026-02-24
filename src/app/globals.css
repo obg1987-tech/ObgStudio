@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.logo-wrap {
+  position: relative;
+}
+
+.logo-text {
+  background: linear-gradient(90deg, #9ef6ff 0%, #ffffff 35%, #8bffc9 60%, #7db0ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: logo-sheen 4.6s ease-in-out infinite;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  padding-bottom: 6px;
+  text-shadow: 0 0 18px rgba(160, 240, 255, 0.25);
+}
+
+.logo-bars .logo-bar {
+  background: linear-gradient(90deg, #2dd4bf 0%, #60a5fa 50%, #a7f3d0 100%);
+  background-size: 200% 100%;
+  animation: logo-sheen 4s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(80, 200, 255, 0.35);
+}
+
+.logo-star {
+  color: #ffffff;
+  animation: star-twinkle 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 14px rgba(180, 240, 255, 0.85));
+}
+
+@keyframes logo-sheen {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.18); opacity: 1; }
+}
