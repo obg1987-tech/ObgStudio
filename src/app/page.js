@@ -235,17 +235,17 @@ const DynamicLogo = ({ genre }) => {
     // 1. Rock / Metal
     if (genre === 'Rock') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative theme-rock-jitter">
+            <div className="flex items-center justify-center cursor-pointer relative theme-rock-jitter mt-8 md:mt-14">
                 {/* 락: 번개 아이콘 */}
-                <svg className="w-10 h-10 md:w-14 md:h-14 text-[#ff4500] drop-shadow-[0_0_15px_#ff4500]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-16 h-16 md:w-20 md:h-20 text-[#ff4500] drop-shadow-[0_0_15px_#ff4500]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
                 </svg>
                 {/* 날카로운 폰트 */}
-                <span className="text-4xl md:text-6xl font-black italic tracking-[-0.08em] ml-2 text-white drop-shadow-[0_0_10px_rgba(255,69,0,0.8)] uppercase">
+                <span className="text-6xl md:text-8xl font-black italic tracking-[-0.08em] ml-3 text-white drop-shadow-[0_0_10px_rgba(255,69,0,0.8)] uppercase">
                     ObgStudio
                 </span>
                 {/* 데코: 불꽃 or 작은 번개 */}
-                <svg className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 ml-1 -translate-y-5 md:-translate-y-6 drop-shadow-[0_0_10px_#ffeb3b]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-10 h-10 md:w-12 md:h-12 text-yellow-400 ml-1 -translate-y-8 md:-translate-y-12 drop-shadow-[0_0_10px_#ffeb3b]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.5 11c0 0-3.5 0-3.5-3.5 0-3.5 3.5-3.5 3.5-3.5S14 4 14 7.5S17.5 11 17.5 11zM6.5 11c0 0 3.5 0 3.5-3.5 0-3.5-3.5-3.5-3.5-3.5S10 4 10 7.5S6.5 11 6.5 11zM12 21c-4.4 0-8-3.6-8-8c0-3.3 2.1-6.2 5.2-7.4c.5-.2 1.1-.3 1.7-.5c-.8.6-1.4 1.4-1.6 2.4c-.6 2.3 1.8 4.3 3.8 5.6c.4.3 1.1.6 1.6.4c.4-.2.6-.7.4-1.2c-.3-.9-1-1.7-1.8-2.3c-.6-.5-1.4-1.2-1.3-2.1c.1-.8.7-1.3 1.3-1.6c-2.4-.6-4-.6-6.4 0c3.7-2.3 8.3-1.8 11.5 1.5c3.2 3.3 3.6 8.1 1 11.8C16.8 20.3 14.5 21 12 21z" />
                 </svg>
             </div>
@@ -255,17 +255,17 @@ const DynamicLogo = ({ genre }) => {
     // 2. Lullaby (Lo-fi / Chill)
     if (genre === 'Lullaby') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative theme-lofi-float">
+            <div className="flex items-center justify-center cursor-pointer relative theme-lofi-float mt-8 md:mt-14">
                 {/* 로파이: 달 아이콘 */}
-                <svg className="w-10 h-10 md:w-14 md:h-14 text-[#81ecec] drop-shadow-[0_0_15px_#81ecec]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-16 h-16 md:w-20 md:h-20 text-[#81ecec] drop-shadow-[0_0_15px_#81ecec]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
                 </svg>
                 {/* 둥글고 부드러운 폰트 */}
-                <span className="text-4xl md:text-6xl font-semibold tracking-wide ml-3 theme-lofi-text capitalize" style={{ fontFamily: 'Quicksand, Nunito, sans-serif' }}>
+                <span className="text-6xl md:text-8xl font-semibold tracking-wide ml-4 theme-lofi-text capitalize" style={{ fontFamily: 'Quicksand, Nunito, sans-serif' }}>
                     ObgStudio
                 </span>
                 {/* 데코: 구름/Zzz */}
-                <svg className="w-8 h-8 md:w-10 md:h-10 text-[#a29bfe] ml-2 -translate-y-5 md:-translate-y-8 animate-[pulse_4s_infinite]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-12 h-12 md:w-16 md:h-16 text-[#a29bfe] ml-3 -translate-y-8 md:-translate-y-12 animate-[pulse_4s_infinite]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
                 </svg>
             </div>
@@ -275,20 +275,20 @@ const DynamicLogo = ({ genre }) => {
     // 3. EDM / Hip-hop
     if (genre === 'Hip-hop') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative">
+            <div className="flex items-center justify-center cursor-pointer relative mt-8 md:mt-14">
                 {/* EDM: 바이닐/레코드판 아이콘을 감싸는 박스 */}
                 <div className="relative flex items-center justify-center">
                     <div className="theme-edm-neon-ring"></div>
-                    <svg className="w-10 h-10 md:w-14 md:h-14 text-white animate-[spin_2s_linear_infinite]" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-16 h-16 md:w-20 md:h-20 text-white animate-[spin_2s_linear_infinite]" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z" />
                     </svg>
                 </div>
                 {/* 글리치 & 모노스페이스 폰트 */}
-                <span className="text-4xl md:text-6xl font-black italic tracking-widest ml-4 md:ml-6 theme-edm-glitch-text uppercase" style={{ fontFamily: 'monospace' }}>
+                <span className="text-6xl md:text-8xl font-black italic tracking-widest ml-5 md:ml-8 theme-edm-glitch-text uppercase" style={{ fontFamily: 'monospace' }}>
                     ObgStudio
                 </span>
                 {/* 데코: 디지털 픽셀 십자 */}
-                <svg className="w-5 h-5 md:w-8 md:h-8 text-[#ff00ff] ml-2 -translate-y-6 md:-translate-y-8" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-[#ff00ff] ml-3 -translate-y-8 md:-translate-y-12" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8V2z" />
                 </svg>
             </div>
@@ -298,17 +298,17 @@ const DynamicLogo = ({ genre }) => {
     // 4. K-POP
     if (genre === 'K-Pop') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative transition-transform duration-300 hover:scale-105">
+            <div className="flex items-center justify-center cursor-pointer relative transition-transform duration-300 hover:scale-[1.03] mt-8 md:mt-14">
                 {/* Kpop: 심장/하트 아이콘 비트 모션 */}
-                <svg className="w-10 h-10 md:w-14 md:h-14 text-[#ff71ce] drop-shadow-[0_0_15px_#ff71ce] theme-kpop-heartbeat" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-16 h-16 md:w-20 md:h-20 text-[#ff71ce] drop-shadow-[0_0_15px_#ff71ce] theme-kpop-heartbeat" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                 </svg>
                 {/* Kpop: 둥글고 귀여운 폰트에 멀티컬러 그라데이션 */}
-                <span className="text-4xl md:text-6xl font-black tracking-tight ml-3 theme-kpop-text" style={{ fontFamily: '"Comic Sans MS", "Arial Rounded MT Bold", sans-serif' }}>
+                <span className="text-6xl md:text-8xl font-black tracking-tight ml-4 theme-kpop-text" style={{ fontFamily: '"Comic Sans MS", "Arial Rounded MT Bold", sans-serif' }}>
                     ObgStudio
                 </span>
                 {/* 데코: 스파클(Sparkles) 아이콘 */}
-                <svg className="w-7 h-7 md:w-10 md:h-10 text-[#01cdfe] ml-1 -translate-y-5 md:-translate-y-8 animate-[spin_3s_linear_infinite_reverse] drop-shadow-[0_0_10px_#01cdfe]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-10 h-10 md:w-14 md:h-14 text-[#01cdfe] ml-2 -translate-y-8 md:-translate-y-12 animate-[spin_3s_linear_infinite_reverse] drop-shadow-[0_0_10px_#01cdfe]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 9h-4V5h-2v4h-4v2h4v4h2v-4h4V9zm-7 13c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8z" opacity="0" />
                     <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
                 </svg>
@@ -339,17 +339,17 @@ const DynamicLogo = ({ genre }) => {
 
     // Default (Original Space Sheen)
     return (
-        <div className="flex items-center justify-center cursor-pointer logo-wrap hover:scale-105 transition-transform duration-500 relative">
+        <div className="flex items-center justify-center cursor-pointer logo-wrap hover:scale-[1.03] transition-transform duration-500 relative mt-8 md:mt-14">
             {/* 파란색/초록색 기울어진 알약 (로고 아이콘) */}
             <div className="flex gap-2 transform -rotate-45 relative translate-y-[2px] logo-bars transition-all duration-500">
-                <div className="w-[12px] h-[26px] md:w-[15px] md:h-[32px] rounded-full drop-shadow-md logo-bar transition-all duration-500"></div>
-                <div className="w-[12px] h-[26px] md:w-[15px] md:h-[32px] rounded-full drop-shadow-md translate-y-[10px] md:translate-y-[14px] logo-bar transition-all duration-500"></div>
+                <div className="w-[18px] h-[38px] md:w-[22px] md:h-[48px] rounded-full drop-shadow-md logo-bar transition-all duration-500"></div>
+                <div className="w-[18px] h-[38px] md:w-[22px] md:h-[48px] rounded-full drop-shadow-md translate-y-[14px] md:translate-y-[20px] logo-bar transition-all duration-500"></div>
             </div>
             {/* 텍스트 폰트 및 별 모양 데코레이션 */}
-            <span className="text-4xl md:text-6xl font-[800] tracking-[-0.03em] ml-4 md:ml-5 logo-text transition-all duration-500">
+            <span className="text-6xl md:text-8xl font-[800] tracking-[-0.03em] ml-6 md:ml-8 logo-text transition-all duration-500">
                 ObgStudio
             </span>
-            <svg className="w-6 h-6 md:w-9 md:h-9 ml-[6px] -translate-y-[10px] md:-translate-y-[16px] logo-star transition-all duration-500" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-10 h-10 md:w-14 md:h-14 ml-[8px] -translate-y-[16px] md:-translate-y-[24px] logo-star transition-all duration-500" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" />
             </svg>
         </div>
