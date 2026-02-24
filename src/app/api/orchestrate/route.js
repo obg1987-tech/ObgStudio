@@ -2,47 +2,11 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import fs from "fs";
 import path from "path";
 
+export const runtime = "nodejs";
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "dummy_key");
 const GEMINI_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash"];
-
 const TRACK_MODE = (process.env.MOCK_TRACK_MODE || "vocal_only").toLowerCase();
-
-const hasVocalTag = (track) => {
-  if (track?.vocal === true) return true;
-  const merged = `${track?.title || ""} ${track?.file || ""} ${(track?.tags || []).join(" ")}`.toLowerCase();
-  return /\bvocal\b|\bsinger\b|\bvoice\b|\blyrics?\b/.test(merged);
-};
-
-function loadTracks() {
-  const tracksDir = path.join(process.cwd(), "public", "tracks");
-  const orderedCandidates =
-    TRACK_MODE === "vocal_only"
-      ? ["tracks_real.json"]
-      : TRACK_MODE === "real"
-        ? ["tracks_real.json", "tracks.json"]
-        : ["tracks.json", "tracks_real.json"];
-
-  for (const fileName of orderedCandidates) {
-    const fullPath = path.join(tracksDir, fileName);
-    if (!fs.existsSync(fullPath)) continue;
-    const parsed = JSON.parse(fs.readFileSync(fullPath, "utf8"));
-    if (Array.isArray(parsed) && parsed.length > 0) {
-      const filtered =
-        TRACK_MODE === "vocal_only" ? parsed.filter((t) => hasVocalTag(t)) : parsed;
-      if (filtered.length > 0) {
-        return { tracks: filtered, sourceFile: fileName };
-      }
-    }
-  }
-
-  if (TRACK_MODE === "vocal_only") {
-    throw new Error("Vocal-only mode requires public/tracks/tracks_real.json with vocal-tagged tracks.");
-  }
-
-  throw new Error("No track metadata found. Expected tracks.json or tracks_real.json in public/tracks.");
-}
-
-const { tracks: TRACKS, sourceFile: TRACK_SOURCE_FILE } = loadTracks();
 
 const themeMap = {
   Rock: "rock",
@@ -53,9 +17,15 @@ const themeMap = {
 };
 const VALID_THEMES = new Set(Object.keys(themeMap));
 
+const hasVocalTag = (track) => {
+  if (track?.vocal === true) return true;
+  const merged = `${track?.title || ""} ${track?.file || ""} ${(track?.tags || []).join(" ")}`.toLowerCase();
+  return /\bvocal\b|\bsinger\b|\bvoice\b|\blyrics?\b/.test(merged);
+};
+
 const hashString = (s) => {
   let h = 2166136261 >>> 0;
-  for (let i = 0; i < s.length; i++) {
+  for (let i = 0; i < s.length; i += 1) {
     h ^= s.charCodeAt(i);
     h = Math.imul(h, 16777619);
   }
@@ -67,6 +37,38 @@ const parseAiJson = (text) => {
   if (!jsonMatch) throw new Error("No JSON found in AI response");
   return JSON.parse(jsonMatch[0]);
 };
+
+const fileExistsInPublic = (urlPath) => {
+  if (!urlPath || typeof urlPath !== "string" || !urlPath.startsWith("/")) return false;
+  const fullPath = path.join(process.cwd(), "public", urlPath.replace(/^\//, ""));
+  return fs.existsSync(fullPath);
+};
+
+function loadTracksSafe() {
+  try {
+    const tracksDir = path.join(process.cwd(), "public", "tracks");
+    const orderedCandidates =
+      TRACK_MODE === "vocal_only"
+        ? ["tracks_real.json", "tracks.json"]
+        : TRACK_MODE === "real"
+          ? ["tracks_real.json", "tracks.json"]
+          : ["tracks.json", "tracks_real.json"];
+
+    for (const fileName of orderedCandidates) {
+      const fullPath = path.join(tracksDir, fileName);
+      if (!fs.existsSync(fullPath)) continue;
+      const parsed = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+      if (!Array.isArray(parsed) || parsed.length === 0) continue;
+
+      const filtered = TRACK_MODE === "vocal_only" ? parsed.filter((t) => hasVocalTag(t)) : parsed;
+      if (filtered.length > 0) return { tracks: filtered, sourceFile: fileName };
+    }
+  } catch (error) {
+    console.error("loadTracksSafe error:", error);
+  }
+
+  return { tracks: [], sourceFile: "fallback" };
+}
 
 async function generateOrchestrationWithGemini(systemPrompt, fallbackData) {
   let lastError = null;
@@ -86,14 +88,34 @@ async function generateOrchestrationWithGemini(systemPrompt, fallbackData) {
   return fallbackData;
 }
 
-function pickTrack({ prompt, theme }) {
+function pickTrack({ prompt, theme, tracks }) {
+  if (!Array.isArray(tracks) || tracks.length === 0) return null;
+
   const themeId = themeMap[theme] || "jazz";
-  const pool = TRACKS.filter((t) => t.theme === themeId);
-  if (pool.length === 0) {
-    return TRACKS[0];
+  const pool = tracks.filter((t) => t.theme === themeId);
+  const scoped = pool.length > 0 ? pool : tracks;
+  const idx = hashString(`${theme}|${prompt}`) % scoped.length;
+
+  return scoped[idx] || null;
+}
+
+function pickAudioUrl(track, tracks) {
+  if (track?.file && fileExistsInPublic(track.file)) {
+    return { audioUrl: track.file, trackId: track.id || "unknown" };
   }
-  const idx = hashString(`${theme}|${prompt}`) % pool.length;
-  return pool[idx];
+
+  if (Array.isArray(tracks)) {
+    const firstExisting = tracks.find((t) => t?.file && fileExistsInPublic(t.file));
+    if (firstExisting) {
+      return { audioUrl: firstExisting.file, trackId: firstExisting.id || "fallback-track" };
+    }
+  }
+
+  if (fileExistsInPublic("/fallback.wav")) {
+    return { audioUrl: "/fallback.wav", trackId: "fallback-wav" };
+  }
+
+  return { audioUrl: "", trackId: "missing-audio" };
 }
 
 export async function POST(req) {
@@ -119,24 +141,25 @@ export async function POST(req) {
       bpm: 120,
     });
 
-    // Always lock generation to the user-selected theme.
-    // Gemini may return a different target_theme; we intentionally ignore it.
+    const { tracks, sourceFile } = loadTracksSafe();
     const selectedTrack = pickTrack({
       prompt: orchestrationData.refined_prompt || userRequest,
       theme: effectiveGenre,
+      tracks,
     });
+    const { audioUrl, trackId } = pickAudioUrl(selectedTrack, tracks);
 
     return new Response(
       JSON.stringify({
         ...orchestrationData,
         target_theme: effectiveGenre,
-        bpm: selectedTrack.bpm || orchestrationData.bpm,
-        audio_url: selectedTrack.file,
+        bpm: selectedTrack?.bpm || orchestrationData.bpm || 120,
+        audio_url: audioUrl,
         provider: "preset_pool",
         is_mock_audio: true,
         mock_track_mode: TRACK_MODE,
-        track_source_file: TRACK_SOURCE_FILE,
-        selected_track: selectedTrack.id,
+        track_source_file: sourceFile,
+        selected_track: trackId,
         warning: "Portfolio demo mode: track selected from theme-based preset pool.",
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }

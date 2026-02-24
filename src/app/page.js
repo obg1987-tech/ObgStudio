@@ -352,6 +352,7 @@ export default function Home() {
     const audioRef = useRef(null);
     const analyzerRef = useRef(null);
     const speechRef = useRef(null);
+    const audioFallbackTriedRef = useRef(false);
     const selectedGenreRef = useRef('');
     const isThemeLockedByTrack = Boolean(audioUrl);
 
@@ -383,6 +384,7 @@ export default function Home() {
             setIsAudioPlaying(false);
             setVoiceText('');
             setIsMockAudio(false);
+            audioFallbackTriedRef.current = false;
             setDisplayGenre(effectiveGenre);
 
             let isPolling = true;
@@ -396,7 +398,7 @@ export default function Home() {
                 if (res.status === 503) {
                     const errorData = await res.json();
                     if (errorData.status === 'loading') {
-                        setLyrics(`AI 작곡 엔진 준비 중... (${Math.ceil(errorData.estimated_time || 30)}초 예상)`);
+                        setLyrics(`AI ?묎끝 ?붿쭊 以鍮?以?.. (${Math.ceil(errorData.estimated_time || 30)}珥??덉긽)`);
                         // Wait and poll again.
                         await new Promise((r) => setTimeout(r, 5000));
                         continue;
@@ -416,7 +418,7 @@ export default function Home() {
                 setVoiceText(data.voice_text || '');
                 setIsMockAudio(Boolean(data.is_mock_audio));
                 if (data.warning) {
-                    setLyrics((prev) => `${prev}\n\n[주의] ${data.warning}`);
+                    setLyrics((prev) => `${prev}\n\n[二쇱쓽] ${data.warning}`);
                 }
                 isPolling = false;
             }
@@ -607,6 +609,11 @@ export default function Home() {
                         onPlay={() => setIsAudioPlaying(true)}
                         onPause={() => setIsAudioPlaying(false)}
                         onError={() => {
+                            if (!audioFallbackTriedRef.current) {
+                                audioFallbackTriedRef.current = true;
+                                setAudioUrl('/fallback.wav');
+                                return;
+                            }
                             setLyrics('Audio source failed to load.');
                             setNeedsManualPlay(false);
                             setRobotState('idle');
