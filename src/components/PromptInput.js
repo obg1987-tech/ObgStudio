@@ -57,14 +57,14 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
                   disabled={disabled}
                   onClick={() => onSelectGenre(genre.id)}
                   className={`
-                    relative flex items-center justify-center space-x-1.5 md:space-x-2 2xl:space-x-3 px-3 py-1.5 md:px-4 md:py-2 2xl:px-6 2xl:py-3
-                    rounded-[10px] md:rounded-[12px] 2xl:rounded-[18px] transition-all duration-300 ease-out transform
+                    relative min-w-[104px] md:min-w-[118px] 2xl:min-w-[180px] flex items-center justify-center space-x-1.5 md:space-x-2 2xl:space-x-3 px-3 py-1.5 md:px-4 md:py-2 2xl:px-6 2xl:py-3
+                    rounded-[10px] md:rounded-[12px] 2xl:rounded-[18px] transition-colors duration-300 ease-out
                     backdrop-blur-xl font-bold border ${btnOpacity}
                     ${isSelected
-                      ? `${genre.color} ${genre.glow} scale-105`
-                      : 'bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:text-white/70 hover:scale-105'
+                      ? `${genre.color} ${genre.glow}`
+                      : 'bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:text-white/70'
                     }
-                    disabled:opacity-50 disabled:hover:scale-100 cursor-pointer
+                    disabled:opacity-50 cursor-pointer
                   `}
                 >
                   <div className={`w-6 h-6 md:w-8 md:h-8 2xl:w-12 2xl:h-12 rounded-full flex items-center justify-center ${isSelected ? 'bg-white/20' : 'bg-white/5'}`}>
@@ -79,9 +79,9 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
           <button
             onClick={handleSubmit}
             disabled={disabled || !hasGenre}
-            className={`flex justify-center items-center px-3 py-1.5 md:px-4 md:py-2 2xl:px-7 2xl:py-3 rounded-full text-[11px] md:text-xs 2xl:text-xl font-extrabold transition-all duration-300
+            className={`min-w-[124px] md:min-w-[146px] 2xl:min-w-[220px] flex justify-center items-center px-3 py-1.5 md:px-4 md:py-2 2xl:px-7 2xl:py-3 rounded-full text-[11px] md:text-xs 2xl:text-xl font-extrabold transition-colors duration-300
               ${hasGenre
-                ? 'bg-white/90 text-black hover:bg-white hover:shadow-[0_0_15px_rgba(255,255,255,0.6)] hover:scale-105'
+                ? 'bg-white/90 text-black hover:bg-white hover:shadow-[0_0_15px_rgba(255,255,255,0.6)]'
                 : 'bg-white/10 text-white/30 cursor-not-allowed'
               }
             `}
