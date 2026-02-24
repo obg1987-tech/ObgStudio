@@ -49,8 +49,8 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
   };
 
   return (
-    <div className="w-full max-w-[95%] md:max-w-[800px] 2xl:max-w-[1400px] px-2 md:px-4 py-2 mx-auto relative group z-30">
-      <p className="text-white text-[12px] md:text-[13px] 2xl:text-[18px] font-bold mb-2 tracking-widest uppercase ml-1 opacity-80">PROMPT:</p>
+    <div className="w-full max-w-[95%] md:max-w-[800px] 2xl:max-w-[1400px] px-2 md:px-4 py-1.5 md:py-2 mx-auto relative group z-30">
+      <p className="text-white text-[11px] md:text-[13px] 2xl:text-[18px] font-bold mb-1.5 md:mb-2 tracking-widest uppercase ml-1 opacity-80">PROMPT:</p>
 
       <div
         className="relative rounded-2xl bg-black/40 border backdrop-blur-2xl overflow-hidden transition-all duration-700 ease-out flex flex-col"
@@ -64,7 +64,7 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
           onChange={(e) => setPrompt(e.target.value)}
           placeholder={hasGenre ? `${activeGenreObj.label} 스타일의 음악을 어떻게 만들지 설명해 주세요...` : '먼저 아래에서 음악 테마를 선택해 주세요.'}
           disabled={disabled}
-          className="w-full bg-transparent text-white placeholder-white/30 p-4 md:p-4 2xl:p-7 outline-none resize-none min-h-[72px] md:min-h-[84px] 2xl:min-h-[150px] text-[15px] md:text-lg 2xl:text-3xl disabled:opacity-50"
+          className="w-full bg-transparent text-white placeholder-white/30 p-3 md:p-4 2xl:p-7 outline-none resize-none min-h-[58px] md:min-h-[84px] 2xl:min-h-[150px] text-[14px] md:text-lg 2xl:text-3xl disabled:opacity-50"
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault();
@@ -73,13 +73,13 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
           }}
         />
 
-        <div className="px-4 md:px-5 2xl:px-8 py-2.5 md:py-2.5 2xl:py-4 bg-white/5 border-t border-white/10">
-          <div className="grid grid-cols-3 gap-2 md:hidden">
+        <div className="px-3 md:px-5 2xl:px-8 py-2 md:py-2.5 2xl:py-4 bg-white/5 border-t border-white/10">
+          <div className="grid grid-cols-3 gap-1.5 md:hidden">
             {GENRES.map(renderGenreButton)}
             <button
               onClick={handleSubmit}
               disabled={disabled || !hasGenre}
-              className={`w-full flex justify-center items-center px-2 py-2 rounded-[10px] text-[11px] font-extrabold transition-colors duration-300
+              className={`w-full flex justify-center items-center px-2 py-1.5 rounded-[10px] text-[10px] font-extrabold transition-colors duration-300
                 ${hasGenre
                   ? 'bg-white/90 text-black hover:bg-white'
                   : 'bg-white/10 text-white/30 cursor-not-allowed'

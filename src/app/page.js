@@ -508,18 +508,18 @@ export default function Home() {
     };
 
     return (
-        <main className="h-[100svh] min-h-[100svh] bg-black text-white relative overflow-hidden font-sans">
+        <main className="h-[100dvh] min-h-[100dvh] bg-black text-white relative overflow-hidden font-sans pb-[env(safe-area-inset-bottom)]">
             <Starfield tempo={tempo} selectedGenre={currentGenre} />
 
-            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(74px,11vh)_minmax(260px,1fr)_minmax(132px,21vh)] md:grid-rows-[minmax(68px,11vh)_minmax(320px,1fr)_minmax(132px,21vh)] 2xl:grid-rows-[minmax(98px,12vh)_minmax(400px,1fr)_minmax(168px,20vh)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13vh)_minmax(500px,1fr)_minmax(185px,19vh)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14vh)_minmax(590px,1fr)_minmax(215px,18vh)]">
+            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(56px,10vh)_minmax(220px,46vh)_minmax(180px,44vh)] md:grid-rows-[minmax(68px,11vh)_minmax(320px,1fr)_minmax(132px,21vh)] 2xl:grid-rows-[minmax(98px,12vh)_minmax(400px,1fr)_minmax(168px,20vh)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13vh)_minmax(500px,1fr)_minmax(185px,19vh)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14vh)_minmax(590px,1fr)_minmax(215px,18vh)]">
                 <header className="w-full px-3 md:px-10 flex justify-center items-center min-h-0 relative z-30 overflow-visible pb-[0.4vh] md:pb-[0.8vh]">
-                    <div className="origin-center translate-y-[0.6vh] md:translate-y-[0.9vh] 2xl:translate-y-[1.1vh] [@media(min-width:1920px)]:translate-y-[1.3vh] [@media(min-width:2560px)]:translate-y-[1.5vh] scale-[0.62] sm:scale-[0.72] md:scale-[0.86] xl:scale-95 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
+                    <div className="origin-center translate-y-[0.2vh] md:translate-y-[0.9vh] 2xl:translate-y-[1.1vh] [@media(min-width:1920px)]:translate-y-[1.3vh] [@media(min-width:2560px)]:translate-y-[1.5vh] scale-[0.46] sm:scale-[0.58] md:scale-[0.86] xl:scale-95 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
                         <DynamicLogo genre={currentGenre} />
                     </div>
                 </header>
 
                 <div className="w-full min-h-0 flex items-center justify-center px-2 md:px-6 [@media(min-width:1920px)]:px-8 [@media(min-width:2560px)]:px-10 relative z-20 md:-translate-y-[1.4vh] [@media(min-width:1920px)]:-translate-y-[1.8vh] [@media(min-width:2560px)]:-translate-y-[2.2vh]">
-                    <div className="w-full max-w-[95vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[260px] md:min-h-[320px] relative">
+                    <div className="w-full max-w-[92vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[220px] md:min-h-[320px] relative scale-[0.86] sm:scale-[0.92] md:scale-100">
                         <RobotScene
                             lipScale={lipScale}
                             headAngle={headAngle}
@@ -541,8 +541,8 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="w-full z-20 flex items-end justify-center px-2 pb-2 pt-1 md:pt-0 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
-                    <div className="w-full max-w-[98vw] md:max-w-[92vw] xl:max-w-[1400px] 2xl:max-w-[1650px] [@media(min-width:1920px)]:max-w-[1920px] [@media(min-width:2560px)]:max-w-[2200px] origin-bottom scale-[0.86] sm:scale-[0.91] md:scale-[0.96] 2xl:scale-[1.01] [@media(min-width:1920px)]:scale-[1.06] [@media(min-width:2560px)]:scale-[1.16]">
+                <div className="w-full z-20 flex items-end justify-center px-2 pb-2 pt-0.5 md:pt-0 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
+                    <div className="w-full max-w-[98vw] md:max-w-[92vw] xl:max-w-[1400px] 2xl:max-w-[1650px] [@media(min-width:1920px)]:max-w-[1920px] [@media(min-width:2560px)]:max-w-[2200px] origin-bottom scale-[0.8] sm:scale-[0.86] md:scale-[0.96] 2xl:scale-[1.01] [@media(min-width:1920px)]:scale-[1.06] [@media(min-width:2560px)]:scale-[1.16]">
                         <PromptInput
                             onGenerate={handleGenerate}
                             disabled={robotState === 'thinking'}
