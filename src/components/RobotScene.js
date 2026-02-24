@@ -5,6 +5,8 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Environment, Float, ContactShadows, RoundedBox, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
+const aluminum = new THREE.Color('#d6dde6');
+
 const Headphones = ({ headY, earX, earR, bandR, theme }) => {
     const earMat = (
         <meshPhysicalMaterial
