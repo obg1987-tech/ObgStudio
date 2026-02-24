@@ -22,8 +22,8 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
     const hasGenre = Boolean(selectedGenre);
 
     return (
-        <div className="w-full max-w-[800px] px-4 py-2 mx-auto relative group z-30">
-            <p className="text-white text-[13px] font-bold mb-2 tracking-widest uppercase ml-1 opacity-80">PROMPT:</p>
+        <div className="w-full max-w-[95%] md:max-w-[800px] 2xl:max-w-[1400px] px-2 md:px-4 py-2 mx-auto relative group z-30">
+            <p className="text-white text-[12px] md:text-[13px] 2xl:text-[18px] font-bold mb-2 tracking-widest uppercase ml-1 opacity-80">PROMPT:</p>
 
             {/* Dark Glassmorphism Container with Dynamic Neon Glow */}
             <div
@@ -39,7 +39,7 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder={hasGenre ? `${activeGenreObj.label} 스타일의 음악에 대해 설명해주세요...` : "먼저 아래에서 음악 장르 테마를 선택해주세요."}
                     disabled={disabled}
-                    className="w-full bg-transparent text-white placeholder-white/30 p-5 outline-none resize-none min-h-[100px] text-base md:text-lg disabled:opacity-50"
+                    className="w-full bg-transparent text-white placeholder-white/30 p-4 md:p-5 2xl:p-8 outline-none resize-none min-h-[80px] md:min-h-[100px] 2xl:min-h-[180px] text-[15px] md:text-lg 2xl:text-3xl disabled:opacity-50"
                     onKeyDown={(e) => {
                         if (e.key === 'Enter' && !e.shiftKey) {
                             e.preventDefault();
@@ -49,8 +49,8 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
                 />
 
                 {/* Bottom Section: Genre Tags & Submit Button */}
-                <div className="flex justify-between items-center px-5 py-3 bg-white/5 border-t border-white/10">
-                    <div className="flex flex-wrap gap-2 md:gap-3">
+                <div className="flex justify-between items-center px-4 md:px-5 2xl:px-8 py-3 2xl:py-5 bg-white/5 border-t border-white/10">
+                    <div className="flex flex-wrap gap-2 md:gap-3 2xl:gap-5">
                         {GENRES.map((genre) => {
                             const isSelected = selectedGenre === genre.id;
                             const btnOpacity = !hasGenre ? 'opacity-60 hover:opacity-100' : 'opacity-100';
@@ -60,8 +60,8 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
                                     disabled={disabled}
                                     onClick={() => onSelectGenre(genre.id)}
                                     className={`
-                                        relative flex items-center justify-center space-x-1.5 px-3 py-1.5 md:px-4 md:py-2
-                                        rounded-[12px] transition-all duration-300 ease-out transform
+                                        relative flex items-center justify-center space-x-1.5 md:space-x-2 2xl:space-x-3 px-3 py-1.5 md:px-4 md:py-2 2xl:px-6 2xl:py-3
+                                        rounded-[10px] md:rounded-[12px] 2xl:rounded-[18px] transition-all duration-300 ease-out transform
                                         backdrop-blur-xl font-bold border ${btnOpacity}
                                         ${isSelected
                                             ? `${genre.color} ${genre.glow} scale-105`
@@ -70,10 +70,10 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
                                         disabled:opacity-50 disabled:hover:scale-100 cursor-pointer
                                     `}
                                 >
-                                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${isSelected ? 'bg-white/20' : 'bg-white/5'}`}>
-                                        <span className={`text-[14px] drop-shadow-md ${isSelected ? '' : 'opacity-50'}`}>{genre.emoji}</span>
+                                    <div className={`w-6 h-6 md:w-8 md:h-8 2xl:w-12 2xl:h-12 rounded-full flex items-center justify-center ${isSelected ? 'bg-white/20' : 'bg-white/5'}`}>
+                                        <span className={`text-[13px] md:text-[15px] 2xl:text-[24px] drop-shadow-md transition-all ${isSelected ? '' : 'opacity-50'}`}>{genre.emoji}</span>
                                     </div>
-                                    <span className="text-[12px] md:text-[13px] tracking-wide whitespace-nowrap drop-shadow-sm">{genre.label}</span>
+                                    <span className="text-[12px] md:text-[14px] 2xl:text-[22px] tracking-wide whitespace-nowrap drop-shadow-sm font-bold">{genre.label}</span>
                                 </button>
                             );
                         })}
@@ -83,14 +83,14 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
                     <button
                         onClick={handleSubmit}
                         disabled={disabled || !prompt.trim() || !hasGenre}
-                        className={`flex justify-center items-center px-6 py-2 rounded-full text-sm font-extrabold transition-all duration-300
+                        className={`flex justify-center items-center px-4 py-2 md:px-6 md:py-2.5 2xl:px-10 2xl:py-4 rounded-full text-xs md:text-sm 2xl:text-2xl font-extrabold transition-all duration-300
                             ${hasGenre && prompt.trim()
                                 ? 'bg-white/90 text-black hover:bg-white hover:shadow-[0_0_15px_rgba(255,255,255,0.6)] hover:scale-105'
                                 : 'bg-white/10 text-white/30 cursor-not-allowed'
                             }
                         `}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 2xl:h-8 2xl:w-8 mr-1.5 md:mr-2 2xl:mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>

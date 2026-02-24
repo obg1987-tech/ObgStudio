@@ -595,7 +595,7 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
 
     return (
         <div
-            className="w-full h-[600px] md:h-[800px] relative mt-10 md:mt-20 pointer-events-auto flex items-center justify-center"
+            className="w-full h-[45vh] md:h-[55vh] 2xl:h-[65vh] min-h-[400px] relative mt-10 md:mt-16 pointer-events-auto flex items-center justify-center"
             style={{ background: 'transparent' }}
         >
             <Canvas
