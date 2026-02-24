@@ -553,15 +553,15 @@ export default function Home() {
         >
             <Starfield selectedGenre={displayGenre} />
 
-            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(56px,15%)_minmax(220px,45%)_minmax(170px,40%)] md:grid-rows-[minmax(68px,11%)_minmax(320px,1fr)_minmax(132px,21%)] 2xl:grid-rows-[minmax(98px,12%)_minmax(400px,1fr)_minmax(168px,20%)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13%)_minmax(500px,1fr)_minmax(185px,19%)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14%)_minmax(590px,1fr)_minmax(215px,18%)]">
+            <div className="relative z-10 h-full w-full grid grid-rows-[minmax(56px,15%)_minmax(220px,45%)_minmax(170px,40%)] md:grid-rows-[minmax(76px,14%)_minmax(330px,49%)_minmax(120px,37%)] 2xl:grid-rows-[minmax(98px,12%)_minmax(400px,1fr)_minmax(168px,20%)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13%)_minmax(500px,1fr)_minmax(185px,19%)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14%)_minmax(590px,1fr)_minmax(215px,18%)]">
                 <header className="w-full px-2 md:px-10 flex justify-center items-center min-h-0 relative z-30 overflow-visible pb-1 md:pb-2">
-                    <div className="origin-center translate-y-[3px] md:translate-y-[8px] 2xl:translate-y-[12px] [@media(min-width:1920px)]:translate-y-[14px] [@media(min-width:2560px)]:translate-y-[16px] scale-[0.38] sm:scale-[0.5] md:scale-[0.86] xl:scale-95 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
+                    <div className="origin-center translate-y-[3px] md:translate-y-[10px] 2xl:translate-y-[12px] [@media(min-width:1920px)]:translate-y-[14px] [@media(min-width:2560px)]:translate-y-[16px] scale-[0.38] sm:scale-[0.5] md:scale-[0.9] xl:scale-100 2xl:scale-105 [@media(min-width:1920px)]:scale-[1.2] [@media(min-width:2560px)]:scale-[1.34] overflow-visible">
                         <DynamicLogo genre={displayGenre} />
                     </div>
                 </header>
 
                 <div className="w-full min-h-0 flex items-center justify-center px-2 md:px-6 [@media(min-width:1920px)]:px-8 [@media(min-width:2560px)]:px-10 relative z-20 -translate-y-[4px] sm:-translate-y-[2px] md:-translate-y-[10px] [@media(min-width:1920px)]:-translate-y-[16px] [@media(min-width:2560px)]:-translate-y-[20px]">
-                    <div className="w-full max-w-[96vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[220px] md:min-h-[320px] relative scale-[0.86] sm:scale-[0.92] md:scale-100">
+                    <div className="w-full max-w-[96vw] md:max-w-6xl 2xl:max-w-7xl [@media(min-width:1920px)]:max-w-[1800px] [@media(min-width:2560px)]:max-w-[2200px] h-full min-h-[220px] md:min-h-[320px] relative scale-[0.86] sm:scale-[0.92] md:scale-[1.05]">
                         <RobotScene
                             lipScale={lipScale}
                             headAngle={headAngle}
@@ -584,7 +584,7 @@ export default function Home() {
                 </div>
 
                 <div className="w-full z-20 flex items-end justify-center px-2 pb-1.5 pt-0 md:pt-0 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
-                    <div className="w-full max-w-[98vw] md:max-w-[92vw] xl:max-w-[1400px] 2xl:max-w-[1650px] [@media(min-width:1920px)]:max-w-[1920px] [@media(min-width:2560px)]:max-w-[2200px] origin-bottom scale-[0.74] sm:scale-[0.8] md:scale-[0.96] 2xl:scale-[1.01] [@media(min-width:1920px)]:scale-[1.06] [@media(min-width:2560px)]:scale-[1.16]">
+                    <div className="w-full max-w-[98vw] md:max-w-[84vw] xl:max-w-[1220px] 2xl:max-w-[1500px] [@media(min-width:1920px)]:max-w-[1820px] [@media(min-width:2560px)]:max-w-[2100px] origin-bottom scale-[0.74] sm:scale-[0.8] md:scale-[0.92] 2xl:scale-[1.01] [@media(min-width:1920px)]:scale-[1.06] [@media(min-width:2560px)]:scale-[1.16]">
                         <PromptInput
                             onGenerate={handleGenerate}
                             disabled={robotState === 'thinking'}
