@@ -575,8 +575,8 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="w-full z-20 flex items-end justify-center px-2 pb-1.5 pt-7 sm:pt-5 md:pt-0 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
-                    <div className="w-full max-w-[98vw] md:max-w-[74vw] xl:max-w-[1080px] 2xl:max-w-[1240px] [@media(min-width:1920px)]:max-w-[1400px] [@media(min-width:2560px)]:max-w-[1600px] origin-bottom translate-y-[14px] sm:translate-y-[10px] md:translate-y-0 scale-[1.11] sm:scale-[1.2] md:scale-[0.68] 2xl:scale-[0.75] [@media(min-width:1920px)]:scale-[0.82] [@media(min-width:2560px)]:scale-[0.9]">
+                <div className="w-full z-20 flex items-end justify-center px-2 pb-1.5 pt-10 sm:pt-7 md:pt-0 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
+                    <div className="w-full max-w-[98vw] md:max-w-[74vw] xl:max-w-[1080px] 2xl:max-w-[1240px] [@media(min-width:1920px)]:max-w-[1400px] [@media(min-width:2560px)]:max-w-[1600px] origin-bottom translate-y-[21px] sm:translate-y-[15px] md:translate-y-0 scale-[1.11] sm:scale-[1.2] md:scale-[0.68] 2xl:scale-[0.75] [@media(min-width:1920px)]:scale-[0.82] [@media(min-width:2560px)]:scale-[0.9]">
                         <PromptInput
                             onGenerate={handleGenerate}
                             disabled={robotState === 'thinking'}
