@@ -235,7 +235,7 @@ const DynamicLogo = ({ genre }) => {
     // 1. Rock / Metal
     if (genre === 'Rock') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative theme-rock-jitter mt-8 md:mt-14">
+            <div className="flex items-center justify-center cursor-pointer relative theme-rock-jitter">
                 {/* 락: 번개 아이콘 */}
                 <svg className="w-16 h-16 md:w-20 md:h-20 text-[#ff4500] drop-shadow-[0_0_15px_#ff4500]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
@@ -255,7 +255,7 @@ const DynamicLogo = ({ genre }) => {
     // 2. Lullaby (Lo-fi / Chill)
     if (genre === 'Lullaby') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative theme-lofi-float mt-8 md:mt-14">
+            <div className="flex items-center justify-center cursor-pointer relative theme-lofi-float">
                 {/* 로파이: 달 아이콘 */}
                 <svg className="w-16 h-16 md:w-20 md:h-20 text-[#81ecec] drop-shadow-[0_0_15px_#81ecec]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
@@ -275,7 +275,7 @@ const DynamicLogo = ({ genre }) => {
     // 3. EDM / Hip-hop
     if (genre === 'Hip-hop') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative mt-8 md:mt-14">
+            <div className="flex items-center justify-center cursor-pointer relative">
                 {/* EDM: 바이닐/레코드판 아이콘을 감싸는 박스 */}
                 <div className="relative flex items-center justify-center">
                     <div className="theme-edm-neon-ring"></div>
@@ -298,7 +298,7 @@ const DynamicLogo = ({ genre }) => {
     // 4. K-POP
     if (genre === 'K-Pop') {
         return (
-            <div className="flex items-center justify-center cursor-pointer relative transition-transform duration-300 hover:scale-[1.03] mt-8 md:mt-14">
+            <div className="flex items-center justify-center cursor-pointer relative transition-transform duration-300 hover:scale-[1.03]">
                 {/* Kpop: 심장/하트 아이콘 비트 모션 */}
                 <svg className="w-16 h-16 md:w-20 md:h-20 text-[#ff71ce] drop-shadow-[0_0_15px_#ff71ce] theme-kpop-heartbeat" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
@@ -339,7 +339,7 @@ const DynamicLogo = ({ genre }) => {
 
     // Default (Original Space Sheen)
     return (
-        <div className="flex items-center justify-center cursor-pointer logo-wrap hover:scale-[1.03] transition-transform duration-500 relative mt-8 md:mt-14">
+        <div className="flex items-center justify-center cursor-pointer logo-wrap hover:scale-[1.03] transition-transform duration-500 relative">
             {/* 파란색/초록색 기울어진 알약 (로고 아이콘) */}
             <div className="flex gap-2 transform -rotate-45 relative translate-y-[2px] logo-bars transition-all duration-500">
                 <div className="w-[18px] h-[38px] md:w-[22px] md:h-[48px] rounded-full drop-shadow-md logo-bar transition-all duration-500"></div>
@@ -423,8 +423,8 @@ export default function Home() {
         <main className="min-h-screen bg-black text-white flex flex-col items-center justify-between relative overflow-x-hidden font-sans">
             <Starfield tempo={tempo} selectedGenre={currentGenre} />
 
-            {/* 1. Header (로고) - 중앙 정렬 적용 */}
-            <header className="w-full max-w-[1500px] px-6 md:px-16 pt-8 pb-4 md:py-10 flex justify-center items-center z-10 transition-all duration-500 shrink-0">
+            {/* 1. Header (로고) - 고정 높이 적용으로 로봇 배치 밀림 완벽 방지 */}
+            <header className="w-full max-w-[1500px] h-[120px] md:h-[200px] mt-4 md:mt-10 px-6 md:px-16 flex justify-center items-center z-10 transition-all duration-500 shrink-0">
                 <DynamicLogo genre={currentGenre} />
             </header>
 

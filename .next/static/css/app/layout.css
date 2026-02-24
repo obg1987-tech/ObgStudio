@@ -596,6 +596,9 @@ video {
 .ml-\[8px\] {
   margin-left: 8px;
 }
+.mt-4 {
+  margin-top: 1rem;
+}
 .inline-block {
   display: inline-block;
 }
@@ -646,6 +649,9 @@ video {
 }
 .h-\[38px\] {
   height: 38px;
+}
+.h-\[120px\] {
+  height: 120px;
 }
 .min-h-\[100px\] {
   min-height: 100px;
@@ -1901,6 +1907,10 @@ video {
     margin-top: 3.5rem;
   }
 
+  .md\:mt-10 {
+    margin-top: 2.5rem;
+  }
+
   .md\:h-10 {
     height: 2.5rem;
   }
@@ -1939,6 +1949,10 @@ video {
 
   .md\:h-\[48px\] {
     height: 48px;
+  }
+
+  .md\:h-\[200px\] {
+    height: 200px;
   }
 
   .md\:w-10 {
