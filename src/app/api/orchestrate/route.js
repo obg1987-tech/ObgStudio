@@ -5,7 +5,7 @@ import path from "path";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "dummy_key");
 const GEMINI_MODELS = ["gemini-2.0-flash", "gemini-1.5-flash"];
 
-const TRACK_MODE = (process.env.MOCK_TRACK_MODE || "synthetic").toLowerCase();
+const TRACK_MODE = (process.env.MOCK_TRACK_MODE || "vocal_only").toLowerCase();
 
 const hasVocalTag = (track) => {
   if (track?.vocal === true) return true;
