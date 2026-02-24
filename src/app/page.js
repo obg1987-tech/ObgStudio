@@ -555,7 +555,7 @@ export default function Home() {
 
             <div className="relative z-10 h-full w-full grid grid-rows-[minmax(52px,13%)_minmax(250px,52%)_minmax(145px,35%)] md:grid-rows-[minmax(66px,12%)_minmax(380px,56%)_minmax(104px,32%)] 2xl:grid-rows-[minmax(98px,12%)_minmax(400px,1fr)_minmax(168px,20%)] [@media(min-width:1920px)]:grid-rows-[minmax(116px,13%)_minmax(500px,1fr)_minmax(185px,19%)] [@media(min-width:2560px)]:grid-rows-[minmax(138px,14%)_minmax(590px,1fr)_minmax(215px,18%)]">
                 <header className="w-full px-2 md:px-10 flex justify-center items-center min-h-0 relative z-30 overflow-visible pb-1 md:pb-2">
-                    <div className="origin-center translate-y-[3px] md:translate-y-[4px] 2xl:translate-y-[12px] [@media(min-width:1920px)]:translate-y-[14px] [@media(min-width:2560px)]:translate-y-[16px] scale-[0.38] sm:scale-[0.5] md:scale-[0.72] xl:scale-[0.78] 2xl:scale-[0.84] [@media(min-width:1920px)]:scale-[0.92] [@media(min-width:2560px)]:scale-[1] overflow-visible">
+                    <div className="origin-center translate-y-[10px] sm:translate-y-[12px] md:translate-y-[4px] 2xl:translate-y-[12px] [@media(min-width:1920px)]:translate-y-[14px] [@media(min-width:2560px)]:translate-y-[16px] scale-[0.76] sm:scale-[0.92] md:scale-[0.72] xl:scale-[0.78] 2xl:scale-[0.84] [@media(min-width:1920px)]:scale-[0.92] [@media(min-width:2560px)]:scale-[1] overflow-visible">
                         <DynamicLogo genre={displayGenre} />
                     </div>
                 </header>
@@ -576,7 +576,7 @@ export default function Home() {
                 </div>
 
                 <div className="w-full z-20 flex items-end justify-center px-2 pb-1.5 pt-0 md:pt-0 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
-                    <div className="w-full max-w-[98vw] md:max-w-[74vw] xl:max-w-[1080px] 2xl:max-w-[1240px] [@media(min-width:1920px)]:max-w-[1400px] [@media(min-width:2560px)]:max-w-[1600px] origin-bottom scale-[0.74] sm:scale-[0.8] md:scale-[0.68] 2xl:scale-[0.75] [@media(min-width:1920px)]:scale-[0.82] [@media(min-width:2560px)]:scale-[0.9]">
+                    <div className="w-full max-w-[98vw] md:max-w-[74vw] xl:max-w-[1080px] 2xl:max-w-[1240px] [@media(min-width:1920px)]:max-w-[1400px] [@media(min-width:2560px)]:max-w-[1600px] origin-bottom scale-[1.11] sm:scale-[1.2] md:scale-[0.68] 2xl:scale-[0.75] [@media(min-width:1920px)]:scale-[0.82] [@media(min-width:2560px)]:scale-[0.9]">
                         <PromptInput
                             onGenerate={handleGenerate}
                             disabled={robotState === 'thinking'}
