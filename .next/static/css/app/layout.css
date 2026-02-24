@@ -584,8 +584,8 @@ video {
 .mt-8 {
   margin-top: 2rem;
 }
-.mt-\[-4rem\] {
-  margin-top: -4rem;
+.mt-\[-1rem\] {
+  margin-top: -1rem;
 }
 .inline-block {
   display: inline-block;
@@ -668,6 +668,9 @@ video {
 .flex-1 {
   flex: 1 1 0%;
 }
+.shrink-0 {
+  flex-shrink: 0;
+}
 .-translate-x-1\/2 {
   --tw-translate-x: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -731,6 +734,15 @@ video {
 .animate-\[spin_2s_linear_infinite\] {
   animation: spin 2s linear infinite;
 }
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-\[spin_3s_linear_infinite_reverse\] {
+  animation: spin 3s linear infinite reverse;
+}
 @keyframes ping {
 
   75%, 100% {
@@ -749,15 +761,6 @@ video {
 }
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-@keyframes spin {
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-.animate-\[spin_3s_linear_infinite_reverse\] {
-  animation: spin 3s linear infinite reverse;
 }
 .cursor-not-allowed {
   cursor: not-allowed;
@@ -814,6 +817,9 @@ video {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 .whitespace-nowrap {
   white-space: nowrap;
@@ -937,10 +943,6 @@ video {
 .p-5 {
   padding: 1.25rem;
 }
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -965,10 +967,6 @@ video {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
 }
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -984,8 +982,14 @@ video {
 .pb-10 {
   padding-bottom: 2.5rem;
 }
+.pb-4 {
+  padding-bottom: 1rem;
+}
 .pt-4 {
   padding-top: 1rem;
+}
+.pt-8 {
+  padding-top: 2rem;
 }
 .text-center {
   text-align: center;
@@ -1065,6 +1069,9 @@ video {
 .tracking-\[0\.05em\] {
   letter-spacing: 0.05em;
 }
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
 .tracking-wide {
   letter-spacing: 0.025em;
 }
@@ -1074,8 +1081,9 @@ video {
 .tracking-widest {
   letter-spacing: 0.1em;
 }
-.tracking-tight {
-  letter-spacing: -0.025em;
+.text-\[\#01cdfe\] {
+  --tw-text-opacity: 1;
+  color: rgb(1 205 254 / var(--tw-text-opacity, 1));
 }
 .text-\[\#81ecec\] {
   --tw-text-opacity: 1;
@@ -1092,6 +1100,10 @@ video {
 .text-\[\#ff4500\] {
   --tw-text-opacity: 1;
   color: rgb(255 69 0 / var(--tw-text-opacity, 1));
+}
+.text-\[\#ff71ce\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 113 206 / var(--tw-text-opacity, 1));
 }
 .text-black {
   --tw-text-opacity: 1;
@@ -1116,14 +1128,6 @@ video {
 .text-yellow-400 {
   --tw-text-opacity: 1;
   color: rgb(250 204 21 / var(--tw-text-opacity, 1));
-}
-.text-\[\#01cdfe\] {
-  --tw-text-opacity: 1;
-  color: rgb(1 205 254 / var(--tw-text-opacity, 1));
-}
-.text-\[\#ff71ce\] {
-  --tw-text-opacity: 1;
-  color: rgb(255 113 206 / var(--tw-text-opacity, 1));
 }
 .placeholder-white\/30::-moz-placeholder {
   color: rgb(255 255 255 / 0.3);
@@ -1207,6 +1211,10 @@ video {
   --tw-blur: blur(8px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+.drop-shadow-\[0_0_10px_\#01cdfe\] {
+  --tw-drop-shadow: drop-shadow(0 0 10px #01cdfe);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
 .drop-shadow-\[0_0_10px_\#ffeb3b\] {
   --tw-drop-shadow: drop-shadow(0 0 10px #ffeb3b);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1227,6 +1235,10 @@ video {
   --tw-drop-shadow: drop-shadow(0 0 15px #ff4500);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+.drop-shadow-\[0_0_15px_\#ff71ce\] {
+  --tw-drop-shadow: drop-shadow(0 0 15px #ff71ce);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
 .drop-shadow-\[0_0_8px_rgba\(212\2c 175\2c 55\2c 0\.8\)\] {
   --tw-drop-shadow: drop-shadow(0 0 8px rgba(212,175,55,0.8));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1241,14 +1253,6 @@ video {
 }
 .drop-shadow-sm {
   --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-.drop-shadow-\[0_0_10px_\#01cdfe\] {
-  --tw-drop-shadow: drop-shadow(0 0 10px #01cdfe);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-.drop-shadow-\[0_0_15px_\#ff71ce\] {
-  --tw-drop-shadow: drop-shadow(0 0 15px #ff71ce);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .backdrop-blur-2xl {
@@ -1398,6 +1402,8 @@ video {
   background-clip: text;
   color: transparent;
   animation: liquid-gradient 6s ease infinite;
+  line-height: 1.2;
+  padding-bottom: 0.15em;
 }
 
 /* ================================
@@ -1590,6 +1596,8 @@ video {
   color: transparent;
   animation: kpop-gradient 6s ease infinite;
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  line-height: 1.2;
+  padding-bottom: 0.15em;
 }
 
 @keyframes kpop-gradient {
@@ -1617,6 +1625,8 @@ video {
   color: transparent;
   animation: shine 4s linear infinite;
   text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+  padding-bottom: 0.15em;
 }
 
 .theme-jazz-bars {
@@ -1808,6 +1818,10 @@ video {
     margin-top: 5rem;
   }
 
+  .md\:mt-\[-4rem\] {
+    margin-top: -4rem;
+  }
+
   .md\:h-10 {
     height: 2.5rem;
   }
@@ -1886,6 +1900,11 @@ video {
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .md\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .md\:py-2 {

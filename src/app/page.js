@@ -225,7 +225,7 @@ const Starfield = ({ tempo, selectedGenre }) => {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none z-0"
+            className="fixed inset-0 w-full h-full pointer-events-none z-0"
             aria-hidden="true"
         />
     );
@@ -418,16 +418,16 @@ export default function Home() {
     const tempo = audioUrl ? headAngle : 0;
 
     return (
-        <main className="min-h-screen bg-black text-white flex flex-col items-center justify-between relative overflow-hidden font-sans">
+        <main className="min-h-screen bg-black text-white flex flex-col items-center justify-between relative overflow-x-hidden font-sans">
             <Starfield tempo={tempo} selectedGenre={currentGenre} />
 
             {/* 1. Header (로고) - 중앙 정렬 적용 */}
-            <header className="w-full max-w-[1500px] px-10 md:px-16 py-10 flex justify-center items-center z-10 transition-all duration-500">
+            <header className="w-full max-w-[1500px] px-6 md:px-16 pt-8 pb-4 md:py-10 flex justify-center items-center z-10 transition-all duration-500 shrink-0">
                 <DynamicLogo genre={currentGenre} />
             </header>
 
             {/* 2. Main Center (3D 로봇 및 가사 배치) */}
-            <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center z-10 relative mt-[-4rem]">
+            <div className="flex-1 w-full max-w-5xl flex flex-col items-center justify-center z-10 relative mt-[-1rem] md:mt-[-4rem]">
                 <div className="w-full relative">
 
                     <RobotScene lipScale={lipScale} headAngle={headAngle} robotState={robotState} />
