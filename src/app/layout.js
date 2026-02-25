@@ -9,7 +9,7 @@ export const metadata = {
         url: 'https://obgstudio.vercel.app',
         images: [
             {
-                url: '/og-image.png',
+                url: '/og-image.png?v=2',
                 width: 1200,
                 height: 630,
                 alt: 'ObgStudio Main Robot',
