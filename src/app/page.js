@@ -624,13 +624,13 @@ export default function Home() {
                             selectedGenre={currentGenre}
                             onSelectGenre={handleSelectGenre}
                         />
-                        <div className="absolute right-0 -top-3 md:-top-4 pr-2 md:pr-4 translate-x-[-6px] md:translate-x-[-10px] flex items-center gap-2 pointer-events-auto z-40">
+                        <div className="absolute right-0 -top-6 md:-top-4 pr-2 md:pr-4 translate-x-[-6px] md:translate-x-[-10px] flex flex-wrap items-center gap-1.5 md:gap-2 pointer-events-auto z-40">
                             <button
                                 onClick={() => {
                                     setSpinKickOverride(-4.8);
                                     setSpinTestTick((v) => v + 1);
                                 }}
-                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                className="rounded-full px-2 py-1 text-[10px] md:px-3 md:py-1.5 md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] leading-tight"
                                 style={getThemeButtonStyle()}
                             >
                                 SPIN LEFT
@@ -640,7 +640,7 @@ export default function Home() {
                                     setSpinKickOverride(4.8);
                                     setSpinTestTick((v) => v + 1);
                                 }}
-                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                className="rounded-full px-2 py-1 text-[10px] md:px-3 md:py-1.5 md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] leading-tight"
                                 style={getThemeButtonStyle()}
                             >
                                 SPIN RIGHT
@@ -650,7 +650,7 @@ export default function Home() {
                                     setTumbleKickOverride(-4.8);
                                     setTumbleTestTick((v) => v + 1);
                                 }}
-                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                className="rounded-full px-2 py-1 text-[10px] md:px-3 md:py-1.5 md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] leading-tight"
                                 style={getThemeButtonStyle()}
                             >
                                 FLIP FRONT
@@ -660,14 +660,14 @@ export default function Home() {
                                     setTumbleKickOverride(4.8);
                                     setTumbleTestTick((v) => v + 1);
                                 }}
-                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                className="rounded-full px-2 py-1 text-[10px] md:px-3 md:py-1.5 md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] leading-tight"
                                 style={getThemeButtonStyle()}
                             >
                                 FLIP BACK
                             </button>
                             <button
                                 onClick={() => setLaserTestTick((v) => v + 1)}
-                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                className="rounded-full px-2 py-1 text-[10px] md:px-3 md:py-1.5 md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] leading-tight"
                                 style={getThemeButtonStyle()}
                             >
                                 LASER

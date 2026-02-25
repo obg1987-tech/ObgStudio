@@ -1027,7 +1027,7 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
                     lastY: e.clientY,
                     lastT: performance.now(),
                 };
-                if (!isMobile) return;
+                if (isMobile) return;
                 const rect = e.currentTarget.getBoundingClientRect();
                 const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
                 const ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
@@ -1037,13 +1037,17 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
                 gestureRef.current.lastX = e.clientX;
                 gestureRef.current.lastY = e.clientY;
                 gestureRef.current.lastT = performance.now();
-                if (!isMobile || !dragLook.active) return;
+                if (isMobile || !dragLook.active) return;
                 const rect = e.currentTarget.getBoundingClientRect();
                 const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
                 const ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
                 setDragLook((prev) => ({ ...prev, x: nx, y: ny }));
             }}
             onPointerUp={() => {
+                if (isMobile) {
+                    setDragLook({ x: null, y: null, active: false });
+                    return;
+                }
                 const now = performance.now();
                 const dx = gestureRef.current.lastX - gestureRef.current.downX;
                 const dy = gestureRef.current.lastY - gestureRef.current.downY;
@@ -1061,25 +1065,13 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
                     setTumbleKick(kick);
                     setTumbleTick((v) => v + 1);
                 }
-                if (isMobile) {
-                    const dt = now - lastTapRef.current.t;
-                    const dist = Math.hypot(gestureRef.current.lastX - lastTapRef.current.x, gestureRef.current.lastY - lastTapRef.current.y);
-                    if (dt < 320 && dist < 18) {
-                        setLaserTick((v) => v + 1);
-                        lastTapRef.current = { t: 0, x: 0, y: 0 };
-                    } else {
-                        lastTapRef.current = { t: now, x: gestureRef.current.lastX, y: gestureRef.current.lastY };
-                    }
-                }
-                if (!isMobile) return;
                 setDragLook({ x: null, y: null, active: false });
             }}
             onPointerCancel={() => {
-                if (!isMobile) return;
                 setDragLook({ x: null, y: null, active: false });
             }}
             onPointerLeave={() => {
-                if (!isMobile || !dragLook.active) return;
+                if (!dragLook.active) return;
                 setDragLook({ x: null, y: null, active: false });
             }}
         >
