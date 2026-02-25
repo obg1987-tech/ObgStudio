@@ -71,8 +71,6 @@ export default function PromptInput({ onGenerate, disabled, selectedGenre, onSel
 
   return (
     <div className="w-full max-w-[95%] md:max-w-[980px] xl:max-w-[1400px] 2xl:max-w-[1650px] px-2 md:px-4 py-1.5 md:py-2 mx-auto relative group z-30">
-      <p className="text-white text-[11px] md:text-[13px] 2xl:text-[18px] font-bold mb-1.5 md:mb-2 tracking-widest uppercase ml-1 opacity-80">PROMPT:</p>
-
       <div
         className="relative rounded-2xl bg-black/40 border backdrop-blur-2xl overflow-hidden transition-all duration-700 ease-out flex flex-col"
         style={{
