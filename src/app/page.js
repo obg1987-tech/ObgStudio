@@ -624,7 +624,7 @@ export default function Home() {
                             selectedGenre={currentGenre}
                             onSelectGenre={handleSelectGenre}
                         />
-                        <div className="absolute right-0 -top-6 md:-top-4 pr-2 md:pr-4 translate-x-[-6px] md:translate-x-[-10px] flex flex-wrap items-center gap-1.5 md:gap-2 pointer-events-auto z-40">
+                        <div className="absolute right-0 -top-6 md:-top-10 pr-2 md:pr-4 translate-x-[-6px] md:translate-x-[-10px] flex flex-wrap items-center gap-1.5 md:gap-2 pointer-events-auto z-40">
                             <button
                                 onClick={() => {
                                     setSpinKickOverride(-4.8);
