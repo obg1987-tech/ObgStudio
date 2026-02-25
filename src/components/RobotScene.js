@@ -186,6 +186,7 @@ const RobotModel = ({
     tumbleTick = 0,
     laserTick = 0,
 }) => {
+    const BASE_RIG_Y = -0.32;
     const rigRef = useRef();
     const barsRef = useRef([]);
     const frameRef = useRef(0);
@@ -216,6 +217,10 @@ const RobotModel = ({
     const laserSparkRef = useRef(null);
     const laserShakeRef = useRef({ t: 0, amount: 0 });
     const laserNoiseRef = useRef(null);
+    const rightArmRef = useRef(null);
+    const leftArmRef = useRef(null);
+    const rightHandRef = useRef(null);
+    const leftHandRef = useRef(null);
 
     const { scene } = useGLTF('/models/robot-hiphop.glb');
     const modelData = useMemo(() => {
@@ -389,12 +394,86 @@ const RobotModel = ({
 
     useFrame((state, delta) => {
         if (!rigRef.current) return;
+        const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
         const hasDragInput = typeof dragX === 'number' && typeof dragY === 'number';
         const lookX = hasDragInput ? dragX : (useTilt ? tiltX : state.pointer.x);
         const lookY = hasDragInput ? dragY : (useTilt ? tiltY : state.pointer.y);
 
         const t = state.clock.getElapsedTime();
+        const bpm = clamp(dynamicBpm || 120, 72, 170);
+        const beatHz = bpm / 60;
+        const danceActive = robotState === 'singing' && !spinActiveRef.current && !tumbleActiveRef.current;
+        const danceEnergy = clamp(lipScale * 1.7 + 0.25, 0.25, 1.4);
+        let danceYaw = 0;
+        let dancePitch = 0;
+        let danceRoll = 0;
+        let danceBob = 0;
+        let armRightZ = 0;
+        let armLeftZ = 0;
+        let handSpread = 0;
+        let handLift = 0;
+
+        if (danceActive) {
+            if (selectedGenre === 'K-Pop') {
+                const wave = Math.sin(t * beatHz * Math.PI * 1.8);
+                const wave2 = Math.sin(t * beatHz * Math.PI * 3.6 + 0.8);
+                danceYaw = wave * 0.24 * danceEnergy;
+                danceRoll = wave2 * 0.13 * danceEnergy;
+                dancePitch = Math.sin(t * beatHz * Math.PI + 0.4) * 0.05 * danceEnergy;
+                danceBob = Math.sin(t * beatHz * Math.PI * 2.2) * 0.045 * danceEnergy;
+                armRightZ = -0.24 + wave * 0.22;
+                armLeftZ = 0.24 - wave * 0.22;
+                handSpread = 0.045 + Math.abs(wave2) * 0.018;
+                handLift = wave2 * 0.026;
+            } else if (selectedGenre === 'Rock') {
+                const headbang = Math.sin(t * beatHz * Math.PI * 4.1);
+                const side = Math.sin(t * beatHz * Math.PI * 1.6 + 0.5);
+                dancePitch = -Math.abs(headbang) * 0.48 * danceEnergy;
+                danceYaw = side * 0.11 * danceEnergy;
+                danceRoll = Math.sin(t * beatHz * Math.PI * 2.4) * 0.07 * danceEnergy;
+                danceBob = Math.sin(t * beatHz * Math.PI * 2.8) * 0.03 * danceEnergy;
+                armRightZ = -0.12 + Math.abs(headbang) * 0.18;
+                armLeftZ = 0.12 - Math.abs(headbang) * 0.18;
+                handSpread = 0.038 + Math.abs(headbang) * 0.014;
+                handLift = -Math.abs(headbang) * 0.03;
+            } else if (selectedGenre === 'Hip-hop') {
+                const groove = Math.sin(t * beatHz * Math.PI * 1.25);
+                const bounce = Math.sin(t * beatHz * Math.PI * 2.5);
+                const pop = Math.max(0, Math.sin(t * beatHz * Math.PI * 3.9));
+                danceYaw = groove * 0.2 * danceEnergy;
+                dancePitch = -0.07 * danceEnergy + bounce * 0.05 * danceEnergy;
+                danceRoll = Math.sin(t * beatHz * Math.PI * 0.9 + 1.1) * 0.14 * danceEnergy;
+                danceBob = Math.max(0, bounce) * 0.058 * danceEnergy;
+                armRightZ = -0.2 + groove * 0.2 + pop * 0.1;
+                armLeftZ = 0.2 - groove * 0.2 - pop * 0.1;
+                handSpread = 0.04 + Math.abs(groove) * 0.02;
+                handLift = -Math.abs(bounce) * 0.022;
+            } else if (selectedGenre === 'Lullaby') {
+                const sway = Math.sin(t * beatHz * Math.PI * 0.9);
+                const breathe = Math.sin(t * beatHz * Math.PI * 0.55 + 0.9);
+                danceYaw = sway * 0.075 * danceEnergy;
+                dancePitch = breathe * 0.03 * danceEnergy;
+                danceRoll = Math.sin(t * beatHz * Math.PI * 0.8 + 0.4) * 0.045 * danceEnergy;
+                danceBob = Math.max(0, breathe) * 0.024 * danceEnergy;
+                armRightZ = -0.12 + sway * 0.055;
+                armLeftZ = 0.12 - sway * 0.055;
+                handSpread = 0.028 + Math.abs(breathe) * 0.008;
+                handLift = breathe * 0.008;
+            } else if (selectedGenre === 'Jazz') {
+                const swing = Math.sin(t * beatHz * Math.PI * 1.35);
+                const snap = Math.max(0, Math.sin(t * beatHz * Math.PI * 2.7 + 0.6));
+                danceYaw = swing * 0.2 * danceEnergy;
+                dancePitch = -0.045 * danceEnergy + Math.sin(t * beatHz * Math.PI * 1.05) * 0.045 * danceEnergy;
+                danceRoll = Math.sin(t * beatHz * Math.PI * 1.7 + 1.2) * 0.13 * danceEnergy;
+                danceBob = Math.max(0, swing) * 0.052 * danceEnergy;
+                armRightZ = -0.2 + swing * 0.18 + snap * 0.09;
+                armLeftZ = 0.2 - swing * 0.18 - snap * 0.09;
+                handSpread = 0.036 + Math.abs(swing) * 0.02;
+                handLift = snap * 0.02;
+            }
+        }
+
         if (spinActiveRef.current) {
             // Full 360 spin while easing current yaw back to front-facing.
             const spinDuration = 1.2;
@@ -404,6 +483,8 @@ const RobotModel = ({
             const spinYaw = spinDirRef.current * (Math.PI * 2) * p;
             rigRef.current.rotation.y = baseYaw + spinYaw;
             rigRef.current.rotation.x = THREE.MathUtils.lerp(rigRef.current.rotation.x, -lookY * 0.25 + headAngle * 0.28, 0.14);
+            rigRef.current.rotation.z = THREE.MathUtils.lerp(rigRef.current.rotation.z, 0, 0.2);
+            rigRef.current.position.y = THREE.MathUtils.lerp(rigRef.current.position.y, BASE_RIG_Y, 0.2);
             if (p >= 1) {
                 spinActiveRef.current = false;
                 rigRef.current.rotation.y = 0;
@@ -419,6 +500,8 @@ const RobotModel = ({
             const tumblePitch = tumbleDirRef.current * (Math.PI * 2) * p;
             rigRef.current.rotation.x = basePitch + tumblePitch;
             rigRef.current.rotation.y = THREE.MathUtils.lerp(rigRef.current.rotation.y, lookX * 0.7, 0.12);
+            rigRef.current.rotation.z = THREE.MathUtils.lerp(rigRef.current.rotation.z, 0, 0.2);
+            rigRef.current.position.y = THREE.MathUtils.lerp(rigRef.current.position.y, BASE_RIG_Y, 0.2);
             if (p >= 1) {
                 tumbleActiveRef.current = false;
                 rigRef.current.rotation.x = 0;
@@ -436,10 +519,22 @@ const RobotModel = ({
             const hasLookMovedY = Math.abs(lookY - tumbleEndLookYRef.current) > 0.05;
             const followYaw = postSpinLockRef.current > 0 || !hasLookMovedX ? 0 : lookX * 0.7;
             const followPitch = postTumbleLockRef.current > 0 || !hasLookMovedY ? 0 : -lookY * 0.25;
-            const targetYaw = followYaw;
-            const targetPitch = followPitch + headAngle * 0.28;
+            const targetYaw = followYaw + danceYaw;
+            const targetPitch = followPitch + headAngle * 0.28 + dancePitch;
+            const targetRoll = danceRoll;
             rigRef.current.rotation.y = THREE.MathUtils.lerp(rigRef.current.rotation.y, targetYaw, 0.12);
             rigRef.current.rotation.x = THREE.MathUtils.lerp(rigRef.current.rotation.x, targetPitch, 0.14);
+            rigRef.current.rotation.z = THREE.MathUtils.lerp(rigRef.current.rotation.z, targetRoll, 0.12);
+            rigRef.current.position.y = THREE.MathUtils.lerp(rigRef.current.position.y, BASE_RIG_Y + danceBob, 0.14);
+        }
+
+        if (rightArmRef.current && leftArmRef.current && rightHandRef.current && leftHandRef.current) {
+            rightArmRef.current.rotation.z = THREE.MathUtils.lerp(rightArmRef.current.rotation.z, armRightZ, 0.16);
+            leftArmRef.current.rotation.z = THREE.MathUtils.lerp(leftArmRef.current.rotation.z, armLeftZ, 0.16);
+            rightHandRef.current.position.x = THREE.MathUtils.lerp(rightHandRef.current.position.x, handX + handSpread, 0.18);
+            leftHandRef.current.position.x = THREE.MathUtils.lerp(leftHandRef.current.position.x, -handX - handSpread, 0.18);
+            rightHandRef.current.position.y = THREE.MathUtils.lerp(rightHandRef.current.position.y, handY + handLift, 0.18);
+            leftHandRef.current.position.y = THREE.MathUtils.lerp(leftHandRef.current.position.y, handY + handLift, 0.18);
         }
 
         if (laserActiveRef.current) {
@@ -682,7 +777,7 @@ const RobotModel = ({
 
     return (
         <Float speed={2.6} rotationIntensity={0.08} floatIntensity={0.6} floatingRange={[-0.08, 0.08]}>
-            <group ref={rigRef} position={[0, -0.32, 0]} scale={[scale * 1.04, scale, scale * 1.04]}>
+            <group ref={rigRef} position={[0, BASE_RIG_Y, 0]} scale={[scale * 1.04, scale, scale * 1.04]}>
                 <primitive object={model} />
                 {/* Rounded silhouette shell */}
                 <group>
@@ -714,20 +809,20 @@ const RobotModel = ({
                             />
                         </mesh>
                     )}
-                    <mesh position={[armX, headY - armLen * 0.15, 0]}>
+                    <mesh ref={rightArmRef} position={[armX, headY - armLen * 0.15, 0]}>
                         <capsuleGeometry args={[limbR, armLen, 8, 24]} />
                         {shellMat}
                     </mesh>
-                    <mesh position={[-armX, headY - armLen * 0.15, 0]}>
+                    <mesh ref={leftArmRef} position={[-armX, headY - armLen * 0.15, 0]}>
                         <capsuleGeometry args={[limbR, armLen, 8, 24]} />
                         {shellMat}
                     </mesh>
                     {/* cute tiny mittens */}
-                    <mesh position={[handX, handY, handZ + handR * 0.3]}>
+                    <mesh ref={rightHandRef} position={[handX, handY, handZ + handR * 0.3]}>
                         <sphereGeometry args={[handR, 48, 48]} />
                         {shellMat}
                     </mesh>
-                    <mesh position={[-handX, handY, handZ + handR * 0.3]}>
+                    <mesh ref={leftHandRef} position={[-handX, handY, handZ + handR * 0.3]}>
                         <sphereGeometry args={[handR, 48, 48]} />
                         {shellMat}
                     </mesh>
