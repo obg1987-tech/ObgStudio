@@ -8,9 +8,13 @@ import * as THREE from 'three';
 const aluminum = new THREE.Color('#d6dde6');
 
 const Headphones = ({ headY, earX, earR, bandR, theme }) => {
+    const isDefaultTheme = theme?.isDefault;
+    const padColor = isDefaultTheme
+        ? "#202636"
+        : theme.ledMid.clone().lerp(new THREE.Color("#0b0d12"), 0.65);
     const earMat = (
         <meshPhysicalMaterial
-            color="#0b0d12"
+            color={isDefaultTheme ? "#0b0d12" : theme.accent}
             roughness={0.16}
             metalness={0.82}
             clearcoat={0.85}
@@ -19,7 +23,7 @@ const Headphones = ({ headY, earX, earR, bandR, theme }) => {
     );
     const bandMat = (
         <meshPhysicalMaterial
-            color="#12151d"
+            color={isDefaultTheme ? "#12151d" : theme.base}
             roughness={0.2}
             metalness={0.72}
             clearcoat={0.65}
@@ -28,7 +32,7 @@ const Headphones = ({ headY, earX, earR, bandR, theme }) => {
     );
     const padMat = (
         <meshStandardMaterial
-            color="#202636"
+            color={padColor}
             roughness={0.7}
             metalness={0.05}
         />
@@ -673,6 +677,7 @@ const RobotModel = ({
         logoLeft: new THREE.Color(activeColors.logoLeft),
         logoMid: new THREE.Color(activeColors.logoMid),
         logoRight: new THREE.Color(activeColors.logoRight),
+        isDefault: !selectedGenre,
     };
 
     return (

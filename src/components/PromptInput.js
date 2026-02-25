@@ -11,7 +11,7 @@ export const GENRES = [
 ];
 
 const DEFAULT_PLACEHOLDER = '먼저 아래에서 음악 테마를 선택해 주세요.';
-const themePromptText = (label) => `${label} 테마로 만들고 싶은 분위기, 악기, 템포를 자유롭게 적어 주세요.\n프롬프트 없이 "RANDOM MUSIC" 버튼만 눌러도 노래가 생성됩니다.`;
+const themePromptText = (label) => `${label} 테마로 원하는 분위기와 악기, 템포를 적어 주세요.`;
 
 export default function PromptInput({ onGenerate, disabled, selectedGenre, onSelectGenre }) {
   const [prompt, setPrompt] = useState('');
