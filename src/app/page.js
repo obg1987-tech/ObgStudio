@@ -674,7 +674,7 @@ export default function Home() {
                             </button>
                         </div>
                         {audioUrl && (
-                            <div className="absolute right-0 top-10 -translate-y-1/2 md:right-auto md:left-0 md:-top-10 md:translate-y-0 pr-2 md:pr-0 translate-x-[-14px] md:translate-x-[10px] z-40 pointer-events-auto">
+                            <div className="absolute right-0 top-10 -translate-y-1/2 md:right-auto md:left-0 md:-top-14 md:translate-y-0 pr-2 md:pr-0 translate-x-[-14px] md:translate-x-[26px] z-40 pointer-events-auto">
                                 <div className="flex items-center gap-2 rounded-full bg-black/60 border border-white/20 px-2 py-2 backdrop-blur-md">
                                     <button
                                         onClick={handlePlay}
