@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useRef, useEffect } from 'react';
 import { AudioAnalyzer } from '@/lib/MusicEngine';
@@ -345,6 +345,11 @@ export default function Home() {
     const [dynamicBpm, setDynamicBpm] = useState(120);
     const [needsManualPlay, setNeedsManualPlay] = useState(false);
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+    const [spinTestTick, setSpinTestTick] = useState(0);
+    const [spinKickOverride, setSpinKickOverride] = useState(4.8);
+    const [tumbleTestTick, setTumbleTestTick] = useState(0);
+    const [tumbleKickOverride, setTumbleKickOverride] = useState(4.8);
+    const [laserTestTick, setLaserTestTick] = useState(0);
 
     const [lipScale, setLipScale] = useState(0);
     const [headAngle, setHeadAngle] = useState(0);
@@ -355,6 +360,33 @@ export default function Home() {
     const audioFallbackTriedRef = useRef(false);
     const selectedGenreRef = useRef('');
     const isThemeLockedByTrack = Boolean(audioUrl);
+
+    const themeButtonColors = {
+        Rock: '#ff4500',
+        'Hip-hop': '#b967ff',
+        'K-Pop': '#ff71ce',
+        Lullaby: '#7dd3fc',
+        Jazz: '#f59e0b',
+        Default: '#22d3ee',
+    };
+
+    const getThemeButtonStyle = () => {
+        const color = themeButtonColors[displayGenre] || themeButtonColors.Default;
+        const rgb = color.startsWith('#')
+            ? color
+                .replace('#', '')
+                .match(/.{2}/g)
+                .map((v) => parseInt(v, 16))
+            : [34, 211, 238];
+        const [r, g, b] = rgb || [34, 211, 238];
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        const textColor = luminance > 0.62 ? '#0b0d12' : '#ffffff';
+        return {
+            background: color,
+            color: textColor,
+            boxShadow: `0 0 14px ${color}88`,
+        };
+    };
 
     useEffect(() => {
         const setAppHeight = () => {
@@ -408,11 +440,10 @@ export default function Home() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ prompt: userPrompt, genre: effectiveGenre })
                 });
-
                 if (res.status === 503) {
                     const errorData = await res.json();
                     if (errorData.status === 'loading') {
-                        setLyrics(`AI ?묎끝 ?붿쭊 以鍮?以?.. (${Math.ceil(errorData.estimated_time || 30)}珥??덉긽)`);
+                        setLyrics(`AI 모델 준비 중... (약 ${Math.ceil(errorData.estimated_time || 30)}초)`);
                         // Wait and poll again.
                         await new Promise((r) => setTimeout(r, 5000));
                         continue;
@@ -432,7 +463,7 @@ export default function Home() {
                 setVoiceText(data.voice_text || '');
                 setIsMockAudio(Boolean(data.is_mock_audio));
                 if (data.warning) {
-                    setLyrics((prev) => `${prev}\n\n[二쇱쓽] ${data.warning}`);
+                    setLyrics((prev) => `${prev}\n\n[알림] ${data.warning}`);
                 }
                 isPolling = false;
             }
@@ -541,6 +572,11 @@ export default function Home() {
         if (typeof window !== 'undefined' && window.speechSynthesis) {
             window.speechSynthesis.cancel();
         }
+        setAudioUrl(null);
+        setLyrics('');
+        setVoiceText('');
+        setIsMockAudio(false);
+        setNeedsManualPlay(false);
     };
 
     return (
@@ -569,6 +605,11 @@ export default function Home() {
                             selectedGenre={displayGenre}
                             dynamicColor={dynamicColor}
                             dynamicBpm={dynamicBpm}
+                            spinTestTick={spinTestTick}
+                            spinKickOverride={spinKickOverride}
+                            tumbleTestTick={tumbleTestTick}
+                            tumbleKickOverride={tumbleKickOverride}
+                            laserTestTick={laserTestTick}
                         />
 
 
@@ -576,15 +617,64 @@ export default function Home() {
                 </div>
 
                 <div className="w-full z-20 flex items-end justify-center px-2 pb-1.5 pt-10 sm:pt-7 md:pt-0 md:pb-4 2xl:pb-6 [@media(min-width:1920px)]:pb-8 [@media(min-width:2560px)]:pb-9 min-h-0">
-                    <div className="w-full max-w-[98vw] md:max-w-[74vw] xl:max-w-[1080px] 2xl:max-w-[1240px] [@media(min-width:1920px)]:max-w-[1400px] [@media(min-width:2560px)]:max-w-[1600px] origin-bottom translate-y-[21px] sm:translate-y-[15px] md:translate-y-0 scale-[1.11] sm:scale-[1.2] md:scale-[0.68] 2xl:scale-[0.75] [@media(min-width:1920px)]:scale-[0.82] [@media(min-width:2560px)]:scale-[0.9]">
+                    <div className="w-full max-w-[98vw] md:max-w-[74vw] xl:max-w-[1080px] 2xl:max-w-[1240px] [@media(min-width:1920px)]:max-w-[1400px] [@media(min-width:2560px)]:max-w-[1600px] origin-bottom translate-y-[12px] sm:translate-y-[8px] md:translate-y-0 scale-[1.11] sm:scale-[1.2] md:scale-[0.68] 2xl:scale-[0.75] [@media(min-width:1920px)]:scale-[0.82] [@media(min-width:2560px)]:scale-[0.9] relative">
                         <PromptInput
                             onGenerate={handleGenerate}
                             disabled={robotState === 'thinking'}
                             selectedGenre={currentGenre}
                             onSelectGenre={handleSelectGenre}
                         />
-                        <div className={`mt-2 md:mt-3 flex justify-end min-h-[52px] md:min-h-[58px] ${audioUrl ? '' : 'opacity-0 pointer-events-none'}`}>
-                            {audioUrl && (
+                        <div className="absolute right-0 -top-3 md:-top-4 pr-2 md:pr-4 translate-x-[-6px] md:translate-x-[-10px] flex items-center gap-2 pointer-events-auto z-40">
+                            <button
+                                onClick={() => {
+                                    setSpinKickOverride(-4.8);
+                                    setSpinTestTick((v) => v + 1);
+                                }}
+                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                style={getThemeButtonStyle()}
+                            >
+                                SPIN LEFT
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setSpinKickOverride(4.8);
+                                    setSpinTestTick((v) => v + 1);
+                                }}
+                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                style={getThemeButtonStyle()}
+                            >
+                                SPIN RIGHT
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setTumbleKickOverride(-4.8);
+                                    setTumbleTestTick((v) => v + 1);
+                                }}
+                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                style={getThemeButtonStyle()}
+                            >
+                                FLIP FRONT
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setTumbleKickOverride(4.8);
+                                    setTumbleTestTick((v) => v + 1);
+                                }}
+                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                style={getThemeButtonStyle()}
+                            >
+                                FLIP BACK
+                            </button>
+                            <button
+                                onClick={() => setLaserTestTick((v) => v + 1)}
+                                className="rounded-full px-3 py-1.5 text-xs md:text-sm font-bold pointer-events-auto transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                style={getThemeButtonStyle()}
+                            >
+                                LASER
+                            </button>
+                        </div>
+                        {audioUrl && (
+                            <div className="absolute right-0 top-14 md:top-16 pr-2 md:pr-4 translate-x-[-6px] md:translate-x-[-10px] z-40 pointer-events-auto">
                                 <div className="flex items-center gap-2 rounded-full bg-black/60 border border-white/20 px-2 py-2 backdrop-blur-md">
                                     <button
                                         onClick={handlePlay}
@@ -606,8 +696,8 @@ export default function Home() {
                                     </button>
                                     {needsManualPlay && <span className="text-[11px] text-white/70 px-1">Tap Play</span>}
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

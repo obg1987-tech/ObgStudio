@@ -1,11 +1,11 @@
-import "./globals.css";
+﻿import "./globals.css";
 
 export const metadata = {
     title: "ObgStudio",
-    description: "당신만의 미래형 AI 로봇 뮤지션",
+    description: "당신만의 미래형 AI 로봇 뮤직 스튜디오",
     openGraph: {
         title: "ObgStudio",
-        description: "당신만의 미래형 AI 로봇 뮤지션",
+        description: "당신만의 미래형 AI 로봇 뮤직 스튜디오",
         url: 'https://obgstudio.vercel.app',
         images: [
             {
