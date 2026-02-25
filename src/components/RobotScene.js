@@ -979,7 +979,7 @@ export default function RobotScene({ lipScale, headAngle, robotState, selectedGe
 
             // Normalize to pointer-like range [-1, 1]
             const x = clamp(gamma / 35, -1, 1);
-            const y = clamp((beta - 45) / 45, -1, 1);
+            const y = clamp((45 - beta) / 45, -1, 1);
             setTilt((prev) => ({
                 x: prev.x + (x - prev.x) * 0.18,
                 y: prev.y + (y - prev.y) * 0.18,
